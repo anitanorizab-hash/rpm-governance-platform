@@ -25,9 +25,9 @@ export default function PpdComparisonPanel({ comparison }) {
   const riskData = ppds.map((p) => ({ name: shortName(p.name), high_risk: p.high_risk || 0 }));
 
   const highlights = [
-    { label: "Top Performing PPD", value: comparison?.top_performer, tone: "text-green-700" },
-    { label: "Lowest Performing PPD", value: comparison?.lowest_performer, tone: "text-amber-700" },
-    { label: "Highest-Risk PPD", value: comparison?.highest_risk, tone: "text-red-700" },
+    { label: "Top Performing PPD", value: comparison?.top_performer?.name, tone: "text-green-700" },
+    { label: "Lowest Performing PPD", value: comparison?.lowest_performer?.name, tone: "text-amber-700" },
+    { label: "Highest-Risk PPD", value: comparison?.highest_risk?.name, tone: "text-red-700" },
   ];
 
   return (
