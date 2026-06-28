@@ -88,8 +88,14 @@ class FDSService:
         obb = obb_service.analyze(kpi=kpi, cost_total=cost_total, expenditure=expenditure,
                                   achievement=achievement, target=target,
                                   cost_level=m["cost_level"], impact_level=m["impact_level"])
+        # V1.1.2: feed the main activity + milestone + remarks into the intervention.
+        utama = next((a for a in (kpi.activities or []) if a.type == "utama"), None)
         rec = strat.build(finance_risk=bi["financial_risk"], funding_gap=bi["funding_gap"],
-                          quadrant=m["quadrant"], vfm=obb["value_for_money"])
+                          quadrant=m["quadrant"], vfm=obb["value_for_money"],
+                          kpi_status=(upd.achievement_status if upd else kpi.status),
+                          activity=(utama.description if utama else None),
+                          milestone=(utama.milestone if utama else None),
+                          remarks=(utama.remarks if utama else None))
         return {
             "kpi_id": kpi.id, "code": kpi.code,
             "advisory_only": True,

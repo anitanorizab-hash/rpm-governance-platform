@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 from app.repositories.chatbot_repository import ChatbotRepository
 from app.repositories.organisation_repository import OrganisationRepository
 from app.services.agent_service import AgentService
+from app.services.audit_service import AuditService
 from app.services.dashboard_service import DashboardService
 
 ADMIN_BROAD = {"super_admin", "jpn_admin", "executive"}
@@ -27,6 +28,7 @@ class ChatbotService:
     def __init__(self, db: Session):
         self.db = db
         self.repo = ChatbotRepository(db)
+        self.audit = AuditService(db)
 
     # ----- sessions -----
     def create_session(self, current_user):
@@ -193,6 +195,10 @@ class ChatbotService:
         self.repo.create_conversation(session_id=session_id, user_id=current_user.id,
                                        question=message, answer=answer,
                                        grounded=grounded, fallback=fallback_used)
+        # V1.1.2: audit the chatbot interaction (append-only trail).
+        self.audit.record(entity_type="chatbot", entity_id=session_id, action="chatbot_message",
+                          actor_id=current_user.id,
+                          after={"grounded": grounded, "fallback": fallback_used}, commit=False)
         self.db.commit()
 
         return {
