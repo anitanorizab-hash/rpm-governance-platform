@@ -24,6 +24,7 @@ class KPI(Base, TimestampMixin):
     department_id = fk_uuid("department.id")
     sector = Column(String(128))
     pic_id = fk_uuid("pic.id")
+    organisation_id = fk_uuid("organisation.id", nullable=True)   # V1.1: owning org (JPN/PPD/School)
     quick_win = Column(Boolean, default=False)
     year_assigned = Column(Integer)
     status = Column(String(32))             # derived (on-track/lagging/achieved)
@@ -33,6 +34,7 @@ class KPI(Base, TimestampMixin):
 
     teras = relationship("Teras")
     pic = relationship("PIC")
+    organisation = relationship("Organisation")
     indicators = relationship("KPIIndicator", back_populates="kpi")
     targets = relationship("KPITarget", back_populates="kpi")
     activities = relationship("Activity", back_populates="kpi")
