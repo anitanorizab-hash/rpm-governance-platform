@@ -8,6 +8,7 @@ import { systemService } from "../services/systemService";
 import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
 import AdminSectionCard from "../components/admin/AdminSectionCard";
+import AutomationPanel from "../components/admin/AutomationPanel";
 
 export default function Admin() {
   const [stats, setStats] = useState(null);
@@ -57,6 +58,8 @@ export default function Admin() {
         <AdminSectionCard title="Provider Health" count={stats.providerStatus} hint="LLM / embedding" to="/app/admin/system" tone="amber" />
         <AdminSectionCard title="System Health" count="View" hint="API + readiness" to="/app/admin/system" />
       </div>
+
+      <AutomationPanel />
     </div>
   );
 }

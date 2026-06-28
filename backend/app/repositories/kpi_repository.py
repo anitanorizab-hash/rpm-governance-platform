@@ -7,7 +7,7 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session, selectinload
 
 from app.models.operational.access import PIC, Teras
-from app.models.operational.kpi import KPI, KPIIndicator, KPITarget
+from app.models.operational.kpi import KPI, Activity, KPIIndicator, KPITarget
 
 
 def _uid() -> str:
@@ -45,6 +45,9 @@ class KPIRepository:
             stmt = stmt.where(KPI.status == status)
         stmt = stmt.order_by(KPI.code).limit(limit).offset(offset)
         return list(self.db.scalars(stmt))
+
+    def get_activity(self, activity_id: str) -> Activity | None:
+        return self.db.get(Activity, activity_id)
 
     def all_active(self) -> list[KPI]:
         return list(self.db.scalars(

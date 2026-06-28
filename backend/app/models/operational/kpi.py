@@ -5,7 +5,7 @@ Indicator/Target are separated from KPI to support amendment history (BR-008).
 """
 from __future__ import annotations
 
-from sqlalchemy import Boolean, Column, DateTime, Float, Integer, String, Text
+from sqlalchemy import Boolean, Column, DateTime, Float, Integer, String, Text, UniqueConstraint
 from sqlalchemy.orm import relationship
 
 from app.db.base import Base, TimestampMixin, fk_uuid, uuid_pk
@@ -13,8 +13,10 @@ from app.db.base import Base, TimestampMixin, fk_uuid, uuid_pk
 
 class KPI(Base, TimestampMixin):
     __tablename__ = "kpi"
+    # V1.1.1: KPI code is unique PER organisation (national codes repeat across PPDs).
+    __table_args__ = (UniqueConstraint("organisation_id", "code", name="uq_kpi_organisation_id_code"),)
     id = uuid_pk()
-    code = Column(String(64), unique=True, nullable=False)   # TSx.Sy.Pz.KPIn
+    code = Column(String(64), nullable=False)   # TSx.Sy.Pz.KPIn (unique within an organisation)
     # Nullable so messy import rows with an unresolved Teras are stored + flagged (BR-005/006),
     # rather than failing the whole import. Completeness warnings surface the gap for follow-up.
     teras_id = fk_uuid("teras.id", nullable=True)
@@ -69,6 +71,8 @@ class Activity(Base, TimestampMixin):
     description = Column(Text)
     milestone = Column(Text)
     nota_pengiraan = Column(Text)
+    status = Column(String(64))             # V1.1.1: activity progress (e.g. Status Pelaksanaan Aktiviti)
+    remarks = Column(Text)                  # V1.1.1: Catatan / operational notes
     kpi = relationship("KPI", back_populates="activities")
 
 

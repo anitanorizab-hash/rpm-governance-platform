@@ -18,4 +18,9 @@ export const kpiService = {
     api.patch(`/kpis/${id}${override ? "?override=true" : ""}`, body),
   completeness: (id) => api.get(`/kpis/${id}/completeness`),
   completenessSummary: () => api.get(`/kpis/completeness/summary`),
+  // V1.1.1
+  assignPic: (id, { name, email, sector }) =>
+    api.post(`/kpis/${id}/assign-pic`, { name, email, sector }),
+  updateActivity: (id, activityId, fields) =>
+    api.patch(`/kpis/${id}/activities/${activityId}`, fields),
 };

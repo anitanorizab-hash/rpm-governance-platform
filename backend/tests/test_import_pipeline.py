@@ -51,11 +51,13 @@ def test_excel_parsing_works():
     assert out["rows"][0]["pic_email"] == "rao@moe.gov.my"
 
 
-# 2. Missing fields generate warnings
+# 2. Missing fields generate warnings (V1.1.1: mandatory = statement, pic_name, teras;
+#    pic_email is captured manually since it is absent from the source files).
 def test_missing_fields_generate_warnings():
     rec = parser.parse_workbook(_make_workbook([MISSING_ROW]))["rows"][0]
     miss = parser.missing_fields(rec)
-    assert "indicator" in miss and "target" in miss and "pic_email" in miss
+    assert "pic_name" in miss          # MISSING_ROW has an empty PIC name
+    assert "pic_email" not in miss     # email is no longer mandatory at import
 
 
 def _admin_token(client, make_admin, email="adm@moe.gov.my"):

@@ -55,7 +55,7 @@ class PIC(Base, TimestampMixin):
     __tablename__ = "pic"
     id = uuid_pk()
     name = Column(String(255), nullable=False)
-    email = Column(String(255), nullable=False)
+    email = Column(String(255), nullable=True)   # V1.1.1: imported PICs have no email until captured
     sector = Column(String(128))
     department_id = fk_uuid("department.id")
 

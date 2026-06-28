@@ -2,8 +2,8 @@
 from fastapi import APIRouter
 
 from app.api.v1.routes import (
-    agents, approvals, audit, auth, chatbot, dashboard, executive_copilot, fds, health, imports,
-    knowledge, kpis, monthly_updates, notifications, organisations, reports, skills, users,
+    agents, approvals, audit, auth, automation, chatbot, dashboard, executive_copilot, fds, health,
+    imports, knowledge, kpis, monthly_updates, notifications, organisations, reports, skills, users,
 )
 
 api_router = APIRouter()
@@ -26,3 +26,4 @@ api_router.include_router(chatbot.router)
 api_router.include_router(executive_copilot.router)
 api_router.include_router(reports.router)
 api_router.include_router(notifications.router)
+api_router.include_router(automation.router)

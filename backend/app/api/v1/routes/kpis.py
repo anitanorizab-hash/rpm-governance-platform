@@ -10,8 +10,8 @@ from app.core.dependencies import get_current_user
 from app.db.session import get_db
 from app.models.operational.finance import FinancialAllocation
 from app.schemas.kpi import (
-    CompletenessOut, CompletenessSummaryOut, KPICreateIn, KPIDetail, KPIListItem,
-    KPIPatchIn, PICAssignIn,
+    ActivityOut, ActivityPatchIn, CompletenessOut, CompletenessSummaryOut, KPICreateIn, KPIDetail,
+    KPIListItem, KPIPatchIn, PICAssignIn,
 )
 from app.services import completeness_service
 from app.services.kpi_service import AmendmentBlocked, KPIService
@@ -42,7 +42,11 @@ def _detail(kpi, db: Session) -> KPIDetail:
         sector=kpi.sector, status=kpi.status,
         indicators=[i.indicator_text for i in kpi.indicators if i.indicator_text],
         targets=[t.target_value for t in kpi.targets if t.target_value],
-        activities=[a.description for a in kpi.activities if a.description],
+        activities=[
+            ActivityOut(id=a.id, type=a.type, description=a.description, milestone=a.milestone,
+                        status=a.status, remarks=a.remarks)
+            for a in kpi.activities
+        ],
         pic_name=(kpi.pic.name if kpi.pic else None),
         pic_email=(kpi.pic.email if kpi.pic else None),
         financial_allocation_total=float(total or 0.0),
@@ -131,6 +135,23 @@ def assign_pic(kpi_id: str, body: PICAssignIn, request: Request,
         raise HTTPException(status_code=404, detail="KPI not found")
     if res == "forbidden":
         raise HTTPException(status_code=403, detail="Not permitted to manage this KPI")
+    return _detail(res, db)
+
+
+@router.patch("/{kpi_id}/activities/{activity_id}", response_model=KPIDetail)
+def update_activity(kpi_id: str, activity_id: str, body: ActivityPatchIn, request: Request,
+                    current_user=Depends(get_current_user), db: Session = Depends(get_db)):
+    """V1.1.1: operational activity-progress update (status/remarks/desc/milestone).
+
+    Audited; NOT amendment-gated. Allowed for managers and the KPI's assigned PIC.
+    """
+    res = KPIService(db).update_activity(
+        current_user=current_user, kpi_id=kpi_id, activity_id=activity_id,
+        fields=body.model_dump(exclude_none=True), context=get_audit_context(request))
+    if res is None:
+        raise HTTPException(status_code=404, detail="KPI or activity not found")
+    if res == "forbidden":
+        raise HTTPException(status_code=403, detail="Not permitted to update this activity")
     return _detail(res, db)
 
 
