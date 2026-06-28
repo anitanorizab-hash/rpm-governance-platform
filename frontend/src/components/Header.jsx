@@ -15,7 +15,7 @@ export default function Header({ onMenuClick }) {
   function onLogout() { logout(); navigate("/login"); }
 
   return (
-    <header className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-200 bg-white/90 px-4 py-3 backdrop-blur sm:px-6">
+    <header className="no-print sticky top-0 z-30 flex items-center justify-between border-b border-slate-200 bg-white/90 px-4 py-3 backdrop-blur sm:px-6">
       <div className="flex items-center gap-3">
         <button onClick={onMenuClick} aria-label="Open menu" className="rounded-lg p-2 text-navy-700 hover:bg-slate-100 md:hidden">
           <Menu className="h-5 w-5" />

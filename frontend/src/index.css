@@ -22,3 +22,10 @@
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb { background: rgba(11, 46, 89, 0.18); border-radius: 9999px; border: 2px solid transparent; background-clip: content-box; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(11, 46, 89, 0.32); background-clip: content-box; }
+
+/* Export = print the rendered dashboard (no export API). Hide chrome and flatten shadows. */
+@media print {
+  .no-print { display: none !important; }
+  body { background: #ffffff; }
+  .shadow-card, .table-wrap { box-shadow: none !important; }
+}

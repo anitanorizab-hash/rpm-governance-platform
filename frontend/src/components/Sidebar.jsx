@@ -72,7 +72,7 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, onToggle
   return (
     <>
       {/* Desktop */}
-      <aside className={cn("sticky top-0 hidden h-screen shrink-0 flex-col bg-gradient-to-b from-navy-800 to-navy-700 transition-[width] duration-300 md:flex", collapsed ? "w-20" : "w-64")}>
+      <aside className={cn("no-print sticky top-0 hidden h-screen shrink-0 flex-col bg-gradient-to-b from-navy-800 to-navy-700 transition-[width] duration-300 md:flex", collapsed ? "w-20" : "w-64")}>
         <Brand collapsed={collapsed} />
         <NavItems items={items} collapsed={collapsed} />
         <div className="px-3 py-3">
@@ -85,7 +85,7 @@ export default function Sidebar({ collapsed, mobileOpen, onCloseMobile, onToggle
       </aside>
 
       {/* Mobile drawer */}
-      <div className={cn("fixed inset-0 z-50 md:hidden", mobileOpen ? "pointer-events-auto" : "pointer-events-none")}>
+      <div className={cn("no-print fixed inset-0 z-50 md:hidden", mobileOpen ? "pointer-events-auto" : "pointer-events-none")}>
         <div className={cn("absolute inset-0 bg-navy-900/60 backdrop-blur-sm transition-opacity duration-300", mobileOpen ? "opacity-100" : "opacity-0")} onClick={onCloseMobile} />
         <aside className={cn("absolute left-0 top-0 flex h-full w-72 flex-col bg-gradient-to-b from-navy-800 to-navy-700 shadow-2xl transition-transform duration-300", mobileOpen ? "translate-x-0" : "-translate-x-full")}>
           <div className="flex items-center justify-between pr-3">
