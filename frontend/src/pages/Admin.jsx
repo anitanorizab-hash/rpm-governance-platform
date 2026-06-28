@@ -51,6 +51,7 @@ export default function Admin() {
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <AdminSectionCard title="Users" count={stats.users} hint="Manage roles" to="/app/admin/users" tone="blue" />
+        <AdminSectionCard title="PIC Directory" count="Manage" hint="PICs, emails, KPI assignment" to="/app/admin/pics" tone="green" />
         <AdminSectionCard title="Knowledge Sources" count={stats.sources} hint="RAG sources + live links" to="/app/admin/knowledge" tone="green" />
         <AdminSectionCard title="Live Links" count={stats.liveLinks} hint="Admin-validated" to="/app/admin/knowledge" />
         <AdminSectionCard title="Audit Logs" count={stats.logs} hint="Append-only" to="/app/admin/audit" />
