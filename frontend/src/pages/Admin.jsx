@@ -8,6 +8,7 @@ import { systemService } from "../services/systemService";
 import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
 import AdminSectionCard from "../components/admin/AdminSectionCard";
+import AutomationPanel from "../components/admin/AutomationPanel";
 
 export default function Admin() {
   const [stats, setStats] = useState(null);
@@ -50,6 +51,7 @@ export default function Admin() {
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <AdminSectionCard title="Users" count={stats.users} hint="Manage roles" to="/app/admin/users" tone="blue" />
+        <AdminSectionCard title="PIC Directory" count="Manage" hint="PICs, emails, KPI assignment" to="/app/admin/pics" tone="green" />
         <AdminSectionCard title="Knowledge Sources" count={stats.sources} hint="RAG sources + live links" to="/app/admin/knowledge" tone="green" />
         <AdminSectionCard title="Live Links" count={stats.liveLinks} hint="Admin-validated" to="/app/admin/knowledge" />
         <AdminSectionCard title="Audit Logs" count={stats.logs} hint="Append-only" to="/app/admin/audit" />
@@ -57,6 +59,8 @@ export default function Admin() {
         <AdminSectionCard title="Provider Health" count={stats.providerStatus} hint="LLM / embedding" to="/app/admin/system" tone="amber" />
         <AdminSectionCard title="System Health" count="View" hint="API + readiness" to="/app/admin/system" />
       </div>
+
+      <AutomationPanel />
     </div>
   );
 }

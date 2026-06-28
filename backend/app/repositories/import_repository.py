@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 from app.models.operational.access import Department, PIC, Teras
 from app.models.operational.imports import ImportBatch
 from app.models.operational.kpi import KPI, Activity, KPIIndicator, KPITarget
+from app.models.operational.organisation import Organisation
 
 
 def _uid() -> str:
@@ -18,6 +19,20 @@ def _uid() -> str:
 class ImportRepository:
     def __init__(self, db: Session):
         self.db = db
+
+    # --- organisation (V1.1.1) ---
+    def get_or_create_organisation(self, *, code: str, name: str, type: str,
+                                   parent_id: str | None = None) -> Organisation:
+        org = self.db.scalar(select(Organisation).where(Organisation.code == code))
+        if not org:
+            org = Organisation(id=_uid(), code=code, name=name, type=type,
+                               parent_organisation_id=parent_id, active=True)
+            self.db.add(org); self.db.flush()
+        return org
+
+    def jpn_root_id(self) -> str | None:
+        org = self.db.scalar(select(Organisation).where(Organisation.type == "JPN"))
+        return org.id if org else None
 
     # --- lookups / creates ---
     def get_teras_by_number(self, number: int) -> Teras | None:
@@ -30,15 +45,24 @@ class ImportRepository:
             self.db.add(dept); self.db.flush()
         return dept
 
-    def get_or_create_pic(self, *, name: str, email: str, sector: str | None, dept_id: str | None) -> PIC:
-        pic = self.db.scalar(select(PIC).where(PIC.email == email))
+    def get_or_create_pic(self, *, name: str, email: str | None, sector: str | None,
+                          dept_id: str | None) -> PIC:
+        # Prefer email match; fall back to (name, no-email) so imported PICs aren't duplicated.
+        pic = None
+        if email:
+            pic = self.db.scalar(select(PIC).where(PIC.email == email))
+        else:
+            pic = self.db.scalar(select(PIC).where(PIC.name == name, PIC.email.is_(None)))
         if not pic:
             pic = PIC(id=_uid(), name=name, email=email, sector=sector, department_id=dept_id)
             self.db.add(pic); self.db.flush()
         return pic
 
-    def get_kpi_by_code(self, code: str) -> KPI | None:
-        return self.db.scalar(select(KPI).where(KPI.code == code))
+    def get_kpi_by_code(self, code: str, organisation_id: str | None = None) -> KPI | None:
+        # V1.1.1: code is unique PER organisation.
+        return self.db.scalar(
+            select(KPI).where(KPI.code == code, KPI.organisation_id == organisation_id)
+        )
 
     def create_kpi(self, **kw) -> KPI:
         kpi = KPI(id=_uid(), **kw)
@@ -51,8 +75,12 @@ class ImportRepository:
     def add_target(self, kpi_id: str, target_value: str, tov: str | None) -> None:
         self.db.add(KPITarget(id=_uid(), kpi_id=kpi_id, target_value=target_value, tov=tov)); self.db.flush()
 
-    def add_activity(self, kpi_id: str, description: str) -> None:
-        self.db.add(Activity(id=_uid(), kpi_id=kpi_id, type="utama", description=description)); self.db.flush()
+    def add_activity(self, kpi_id: str, *, type: str = "utama", description: str | None = None,
+                     milestone: str | None = None, status: str | None = None,
+                     remarks: str | None = None, nota_pengiraan: str | None = None) -> None:
+        self.db.add(Activity(id=_uid(), kpi_id=kpi_id, type=type, description=description,
+                             milestone=milestone, status=status, remarks=remarks,
+                             nota_pengiraan=nota_pengiraan)); self.db.flush()
 
     # --- batch / import-once ---
     def find_completed_batch_by_hash(self, file_hash: str) -> ImportBatch | None:

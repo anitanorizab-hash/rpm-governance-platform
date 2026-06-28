@@ -75,6 +75,22 @@ export default function KpiDetail() {
     }
   }
 
+  async function handleAssignPic({ name, email, sector }) {
+    try {
+      const updated = await kpiService.assignPic(id, { name, email, sector });
+      setKpi(updated);
+      return true;
+    } catch { return false; }
+  }
+
+  async function handleUpdateActivity(activityId, fields) {
+    try {
+      const updated = await kpiService.updateActivity(id, activityId, fields);
+      setKpi(updated);
+      return true;
+    } catch { return false; }
+  }
+
   async function handleSubmitUpdate(body, override) {
     setSubmitting(true);
     setSubmitError(null);
@@ -120,10 +136,13 @@ export default function KpiDetail() {
       <KpiDetailCard
         kpi={kpi}
         canManage={canManage}
+        canUpdateActivity={canUpdate}
         isSuperAdmin={isSuperAdmin}
         onSave={handleSave}
         saving={saving}
         saveError={saveError}
+        onAssignPic={handleAssignPic}
+        onUpdateActivity={handleUpdateActivity}
       />
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">

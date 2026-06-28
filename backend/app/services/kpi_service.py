@@ -163,6 +163,36 @@ class KPIService:
         self.db.commit()
         return self.repo.get(kpi.id)
 
+    # ---------- activity progress (operational; NOT amendment-gated) ----------
+    def _can_update_activity(self, current_user, kpi) -> bool:
+        if self._can_manage(current_user, kpi):
+            return True
+        roles = set(current_user.role_names)
+        # the KPI's assigned PIC may update activity progress
+        return ("kpi_pic" in roles and kpi.pic is not None
+                and kpi.pic.email and kpi.pic.email == current_user.email)
+
+    def update_activity(self, *, current_user, kpi_id: str, activity_id: str, fields: dict,
+                        context: AuditContext | None = None):
+        kpi = self.repo.get(kpi_id)
+        if not kpi:
+            return None
+        act = self.repo.get_activity(activity_id)
+        if not act or act.kpi_id != kpi_id:
+            return None
+        if not self._can_update_activity(current_user, kpi):
+            return "forbidden"
+        changes = {}
+        for f in ("description", "milestone", "status", "remarks"):
+            if fields.get(f) is not None:
+                setattr(act, f, fields[f]); changes[f] = fields[f]
+        self.db.flush()
+        self.audit.record(entity_type="activity", entity_id=act.id, action="activity_update",
+                          actor_id=current_user.id, after={"kpi_id": kpi_id, **changes},
+                          context=context, commit=False)
+        self.db.commit()
+        return self.repo.get(kpi_id)
+
     # ---------- soft delete ----------
     def soft_delete(self, *, current_user, kpi_id: str, context: AuditContext | None = None):
         kpi = self.repo.get(kpi_id)

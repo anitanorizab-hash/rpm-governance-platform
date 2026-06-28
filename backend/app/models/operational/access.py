@@ -4,7 +4,7 @@ User, Role, UserRole, Department, PIC, Teras, StrategyEnabler, Prakarsa, BudgetS
 """
 from __future__ import annotations
 
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, UniqueConstraint
+from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String, UniqueConstraint
 from sqlalchemy.orm import relationship
 
 from app.db.base import Base, TimestampMixin, fk_uuid, uuid_pk
@@ -55,9 +55,16 @@ class PIC(Base, TimestampMixin):
     __tablename__ = "pic"
     id = uuid_pk()
     name = Column(String(255), nullable=False)
-    email = Column(String(255), nullable=False)
+    email = Column(String(255), nullable=True)   # V1.1.1: imported PICs have no email until captured
     sector = Column(String(128))
     department_id = fk_uuid("department.id")
+    organisation_id = fk_uuid("organisation.id", nullable=True)   # V1.1.1 PIC Directory: JPN/PPD
+    active = Column(Boolean, default=True, nullable=False)         # Active / Inactive
+    is_deleted = Column(Boolean, default=False, nullable=False)    # soft delete
+    deleted_at = Column(DateTime(timezone=True))
+
+    organisation = relationship("Organisation")
+    department = relationship("Department")
 
 
 class Teras(Base, TimestampMixin):

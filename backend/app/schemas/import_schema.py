@@ -14,6 +14,8 @@ class RowWarning(BaseModel):
 
 class ImportPreviewOut(BaseModel):
     plan_type: str
+    organisation_type: str | None = None     # V1.1.1
+    organisation_name: str | None = None     # V1.1.1
     total_rows: int
     sheets_parsed: int
     skipped_sheets: list[str] = []
@@ -26,6 +28,8 @@ class ImportPreviewOut(BaseModel):
 class ImportExecuteOut(BaseModel):
     batch_id: str
     plan_type: str
+    organisation_id: str | None = None       # V1.1.1
+    organisation_name: str | None = None     # V1.1.1
     rows_total: int
     rows_imported: int
     warnings_count: int

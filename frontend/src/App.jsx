@@ -21,6 +21,7 @@ import ExecutiveCopilot from "./pages/ExecutiveCopilot";
 import AdminRoute from "./routes/AdminRoute";
 import Admin from "./pages/Admin";
 import AdminUsers from "./pages/AdminUsers";
+import AdminPics from "./pages/AdminPics";
 import AdminKnowledge from "./pages/AdminKnowledge";
 import AdminAudit from "./pages/AdminAudit";
 import AdminSystemHealth from "./pages/AdminSystemHealth";
@@ -54,6 +55,7 @@ export default function App() {
               <Route path="admin" element={<AdminRoute />}>
                 <Route index element={<Admin />} />
                 <Route path="users" element={<AdminUsers />} />
+                <Route path="pics" element={<AdminPics />} />
                 <Route path="knowledge" element={<AdminKnowledge />} />
                 <Route path="audit" element={<AdminAudit />} />
                 <Route path="system" element={<AdminSystemHealth />} />

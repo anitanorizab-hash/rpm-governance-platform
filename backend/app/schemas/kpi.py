@@ -16,6 +16,23 @@ class KPIListItem(BaseModel):
     is_complete: bool
 
 
+class ActivityOut(BaseModel):
+    id: str
+    type: str | None = None          # utama | sokongan
+    description: str | None = None
+    milestone: str | None = None
+    status: str | None = None        # V1.1.1 activity progress
+    remarks: str | None = None
+
+
+class ActivityPatchIn(BaseModel):
+    # Operational progress update (NOT amendment-gated).
+    description: str | None = None
+    milestone: str | None = None
+    status: str | None = None
+    remarks: str | None = None
+
+
 class KPIDetail(BaseModel):
     id: str
     code: str
@@ -25,7 +42,7 @@ class KPIDetail(BaseModel):
     status: str | None = None
     indicators: list[str] = []
     targets: list[str] = []
-    activities: list[str] = []
+    activities: list[ActivityOut] = []        # V1.1.1: structured (type/milestone/status/remarks)
     pic_name: str | None = None
     pic_email: str | None = None
     financial_allocation_total: float | None = None
