@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # backend on path
 from sqlalchemy import func, select  # noqa: E402
 
 from app.core.security import hash_password  # noqa: E402
+from app.db.knowledge_seed import seed_rpm_knowledge  # noqa: E402
 from app.db.seed import seed_reference_data  # noqa: E402
 from app.db.session import SessionLocal  # noqa: E402
 from app.models.operational.kpi import KPI, Activity  # noqa: E402
@@ -43,6 +44,7 @@ def main():
                 urepo.assign_role(u, r)
         db.commit()
 
+        seed_rpm_knowledge(db)   # V1.1.2: RPM policy reference for the RAG chatbot
         res = ImportService(db).import_data_folder(data_dir=DATA_DIR, actor_id=None, override=True)
         print(f"\nImported {res['files']} file(s).")
         print("\nOrganisation                     Type  KPIs")

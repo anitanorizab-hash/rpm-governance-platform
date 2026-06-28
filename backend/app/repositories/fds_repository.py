@@ -23,7 +23,7 @@ class FDSRepository:
     def get_kpi(self, kpi_id: str) -> KPI | None:
         kpi = self.db.scalar(
             select(KPI).options(selectinload(KPI.targets), selectinload(KPI.pic),
-                                selectinload(KPI.teras)).where(KPI.id == kpi_id)
+                                selectinload(KPI.teras), selectinload(KPI.activities)).where(KPI.id == kpi_id)
         )
         return kpi if (kpi and not kpi.is_deleted) else None
 

@@ -111,10 +111,15 @@ export default function KpiFinancialAnalysis({
 
       <StrategicRecommendationCard
         action={rec.recommended_action}
-        rationale={rec.rationale}
+        rationale={rec.reason || rec.rationale}
         priority={rec.priority}
         status={generatedRec?.status}
         humanReviewRequired={rec.human_review_required !== false}
+        relatedActivity={rec.related_activity}
+        relatedMilestone={rec.related_milestone}
+        urgency={rec.urgency}
+        expectedImpact={rec.expected_impact}
+        lowCostOption={rec.low_cost_option}
         footer={footer}
       />
     </div>
