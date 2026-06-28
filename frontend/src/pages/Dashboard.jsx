@@ -93,7 +93,7 @@ export default function Dashboard() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-slate-800">Dashboard</h1>
+          <h1 className="font-display text-2xl font-bold text-navy-700">Dashboard</h1>
           <p className="text-sm text-slate-500">
             RPM 2026–2035 KPI overview · {scopeLabel}
             {user?.name ? ` · ${user.name}` : ""}

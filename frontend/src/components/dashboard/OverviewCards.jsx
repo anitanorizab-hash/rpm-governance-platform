@@ -1,21 +1,24 @@
-// OverviewCards (CP20A): headline KPI metrics from GET /dashboard/overview.
-import { Card, CardContent } from "../ui/card";
+// OverviewCards (V1.2): premium KPI stat cards. Data binding unchanged from GET /dashboard/overview.
+import { Card } from "../ui/card";
+import { Target, AlertTriangle, ClipboardList, CheckCircle2 } from "lucide-react";
 
-function Stat({ label, value, sub, tone = "slate" }) {
-  const tones = {
-    slate: "text-slate-800",
-    blue: "text-blue-700",
-    red: "text-red-700",
-    amber: "text-amber-700",
-    green: "text-green-700",
-  };
+const TONES = {
+  royal: { text: "text-royal-600", chip: "bg-royal-50 text-royal-600" },
+  red:   { text: "text-danger",    chip: "bg-red-50 text-danger" },
+  amber: { text: "text-amber-600", chip: "bg-amber-50 text-amber-600" },
+  green: { text: "text-success",   chip: "bg-green-50 text-success" },
+};
+
+function Stat({ label, value, sub, tone = "royal", icon: Icon }) {
+  const t = TONES[tone] || TONES.royal;
   return (
-    <Card>
-      <CardContent className="py-4">
+    <Card className="p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
+      <div className="flex items-start justify-between">
         <p className="text-xs font-medium uppercase tracking-wide text-slate-400">{label}</p>
-        <p className={`mt-1 text-2xl font-semibold ${tones[tone] || tones.slate}`}>{value}</p>
-        {sub && <p className="mt-1 text-xs text-slate-500">{sub}</p>}
-      </CardContent>
+        {Icon && <span className={`flex h-9 w-9 items-center justify-center rounded-xl ${t.chip}`}><Icon className="h-5 w-5" /></span>}
+      </div>
+      <p className={`mt-3 font-display text-3xl font-bold ${t.text}`}>{value}</p>
+      {sub && <p className="mt-1 text-xs text-slate-500">{sub}</p>}
     </Card>
   );
 }
@@ -31,15 +34,10 @@ export default function OverviewCards({ overview }) {
 
   return (
     <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-      <Stat label="Total KPIs" value={overview.total_kpis ?? 0} tone="blue" sub="Teras 1–7" />
-      <Stat label="High Risk" value={highRisk} tone="red" sub="Require attention" />
-      <Stat label="Incomplete / Not Updated" value={incomplete} tone="amber" sub="Missing information" />
-      <Stat
-        label="Missing Information"
-        value={overview.missing_information ?? 0}
-        tone="slate"
-        sub={`${achieved} achieved / on-track`}
-      />
+      <Stat label="Total KPIs" value={overview.total_kpis ?? 0} tone="royal" sub="Teras 1–7" icon={Target} />
+      <Stat label="High Risk" value={highRisk} tone="red" sub="Require attention" icon={AlertTriangle} />
+      <Stat label="Incomplete / Not Updated" value={incomplete} tone="amber" sub="Missing information" icon={ClipboardList} />
+      <Stat label="Missing Information" value={overview.missing_information ?? 0} tone="green" sub={`${achieved} achieved / on-track`} icon={CheckCircle2} />
     </div>
   );
 }

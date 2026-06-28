@@ -68,7 +68,7 @@ export default function KpiManagement() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-slate-800">KPI Management</h1>
+          <h1 className="font-display text-2xl font-bold text-navy-700">KPI Management</h1>
           <p className="text-sm text-slate-500">
             View, search and filter RPM KPIs · {scopeLabel}. All updates are in-system (no Excel).
           </p>
