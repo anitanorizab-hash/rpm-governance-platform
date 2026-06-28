@@ -3,7 +3,7 @@
 import { Label } from "../ui/input";
 
 const selectCls =
-  "rounded-md border border-slate-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500";
+  "rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-royal focus:outline-none focus:ring-2 focus:ring-royal/30";
 
 export default function OrgLevelFilter({ level, onLevelChange, ppdId, onPpdChange, ppdOptions = [] }) {
   return (
