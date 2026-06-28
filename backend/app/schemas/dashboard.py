@@ -64,3 +64,30 @@ class ExecutiveSummaryOut(BaseModel):
     generated_by: str          # "deterministic" (AI later)
     text: str
     highlights: dict[str, object]
+
+
+# ---------- Organisation-aware comparison (V1.1) ----------
+class PPDComparisonItem(BaseModel):
+    organisation_id: str
+    code: str
+    name: str
+    type: str
+    rank: int
+    total_kpis: int
+    achieved: int
+    achievement_rate: float
+    high_risk: int
+    missing_information: int
+    achievement: dict[str, int]
+    risk: dict[str, int]
+    finance: dict[str, int]
+    by_teras: dict[int, int]
+
+
+class PPDComparisonOut(BaseModel):
+    parent_organisation_id: str | None = None
+    ppd_count: int
+    ppds: list[PPDComparisonItem]
+    top_performer: PPDComparisonItem | None = None
+    lowest_performer: PPDComparisonItem | None = None
+    highest_risk: PPDComparisonItem | None = None
