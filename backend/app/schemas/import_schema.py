@@ -38,6 +38,9 @@ class ImportBatchOut(BaseModel):
     id: str
     filename: str | None = None
     plan_type: str | None = None
+    organisation_id: str | None = None          # V1.1
+    organisation_type: str | None = None         # V1.1 (resolved via organisation)
+    organisation_name: str | None = None         # V1.1
     rows_total: int
     rows_imported: int
     warnings_count: int
@@ -47,8 +50,13 @@ class ImportBatchOut(BaseModel):
 
     @classmethod
     def from_model(cls, m) -> "ImportBatchOut":
+        org = getattr(m, "organisation", None)
         return cls(
-            id=m.id, filename=m.filename, plan_type=m.plan_type, rows_total=m.rows_total or 0,
+            id=m.id, filename=m.filename, plan_type=m.plan_type,
+            organisation_id=getattr(m, "organisation_id", None),
+            organisation_type=(org.type if org else None),
+            organisation_name=(org.name if org else None),
+            rows_total=m.rows_total or 0,
             rows_imported=m.rows_imported or 0, warnings_count=m.warnings_count or 0,
             status=m.status, imported_by=m.imported_by, created_at=m.created_at,
         )

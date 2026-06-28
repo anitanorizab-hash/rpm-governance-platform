@@ -20,6 +20,7 @@ class DashboardRepository:
             select(KPI).options(
                 selectinload(KPI.indicators), selectinload(KPI.targets),
                 selectinload(KPI.pic), selectinload(KPI.teras),
+                selectinload(KPI.organisation),
             ).where(KPI.is_deleted.is_(False))
         ))
 

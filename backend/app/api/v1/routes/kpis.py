@@ -25,6 +25,7 @@ def _list_item(kpi) -> KPIListItem:
         teras_number=(kpi.teras.number if kpi.teras else None),
         sector=kpi.sector, status=kpi.status,
         pic_email=(kpi.pic.email if kpi.pic else None),
+        organisation_id=getattr(kpi, "organisation_id", None),
         is_complete=completeness_service.is_complete(kpi),
     )
 

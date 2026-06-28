@@ -1,7 +1,7 @@
 """Financial Decision Support API (A6 G7) — CP11. Deterministic, advisory; JWT + role-scoped. No AI."""
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from sqlalchemy.orm import Session
 
 from app.core.audit import get_audit_context
@@ -50,8 +50,9 @@ def list_recommendations(kpi_id: str | None = None,
 
 
 @router.get("/summary", response_model=FDSSummaryOut)
-def summary(current_user=Depends(get_current_user), db: Session = Depends(get_db)):
-    return _svc(db).summary(current_user)
+def summary(organisation_id: str | None = Query(default=None),
+            current_user=Depends(get_current_user), db: Session = Depends(get_db)):
+    return _svc(db).summary(current_user, organisation_id=organisation_id)
 
 
 @router.get("/recommendations/{recommendation_id}", response_model=RecommendationOut)

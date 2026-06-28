@@ -12,3 +12,4 @@ from app.models.operational.governance import (  # noqa: F401
     AmendmentWindow, Approval, AuditLog, KPIAmendment, Notification, Report,
 )
 from app.models.operational.imports import ImportBatch  # noqa: F401
+from app.models.operational.organisation import Organisation  # noqa: F401

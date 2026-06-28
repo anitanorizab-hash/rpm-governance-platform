@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from sqlalchemy import Column, Integer, String, Text
+from sqlalchemy.orm import relationship
 
 from app.db.base import Base, TimestampMixin, fk_uuid, uuid_pk
 
@@ -18,3 +19,6 @@ class ImportBatch(Base, TimestampMixin):
     status = Column(String(16), default="completed")  # completed | failed
     warnings = Column(Text)                        # JSON list of warnings
     imported_by = fk_uuid("user.id")
+    organisation_id = fk_uuid("organisation.id", nullable=True)   # V1.1: org this import targets
+
+    organisation = relationship("Organisation")

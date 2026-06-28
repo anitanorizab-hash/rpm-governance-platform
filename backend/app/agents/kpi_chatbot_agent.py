@@ -87,7 +87,8 @@ class KPIChatbotAgent(Agent):
         lines: list[str] = []
         if summary:
             lines.append(
-                f"KPI portfolio (role-scoped): {summary.get('total_kpis', 0)} KPIs total; "
+                f"KPI portfolio ({summary.get('scope', 'role-scoped')}): "
+                f"{summary.get('total_kpis', 0)} KPIs total; "
                 f"{summary.get('high_risk', 0)} high-risk, {summary.get('medium_risk', 0)} medium-risk, "
                 f"{summary.get('low_risk', 0)} low-risk; "
                 f"{summary.get('missing_information', 0)} with incomplete information."
@@ -100,6 +101,24 @@ class KPIChatbotAgent(Agent):
             if hr:
                 lines.append("High-risk KPIs: "
                              + ", ".join(f"{h['code']} (Teras {h['teras']})" for h in hr if h.get("code")))
+            # V1.1: organisation-aware PPD comparison grounding (rendered only when present).
+            comp = summary.get("ppd_comparison")
+            if comp:
+                ppds = comp.get("ppds") or []
+                if ppds:
+                    lines.append(
+                        "PPD comparison — "
+                        + "; ".join(
+                            f"{p['name']}: {p['total_kpis']} KPIs, {p['achieved']} achieved, "
+                            f"{p['high_risk']} high-risk" for p in ppds
+                        )
+                    )
+                if comp.get("top_performer"):
+                    lines.append(f"Top-performing PPD: {comp['top_performer']}.")
+                if comp.get("lowest_performer"):
+                    lines.append(f"Lowest-performing PPD: {comp['lowest_performer']}.")
+                if comp.get("highest_risk"):
+                    lines.append(f"Highest-risk PPD: {comp['highest_risk']}.")
         for k in context:
             lines.append(
                 f"KPI {k.get('code')}: status {k.get('status')}, risk {k.get('risk')}, "

@@ -3,7 +3,7 @@ from fastapi import APIRouter
 
 from app.api.v1.routes import (
     agents, approvals, audit, auth, chatbot, dashboard, executive_copilot, fds, health, imports,
-    knowledge, kpis, monthly_updates, notifications, reports, skills, users,
+    knowledge, kpis, monthly_updates, notifications, organisations, reports, skills, users,
 )
 
 api_router = APIRouter()
@@ -17,6 +17,7 @@ api_router.include_router(monthly_updates.router)
 api_router.include_router(monthly_updates.kpi_scoped_router)
 api_router.include_router(approvals.router)
 api_router.include_router(dashboard.router)
+api_router.include_router(organisations.router)
 api_router.include_router(fds.router)
 api_router.include_router(skills.router)
 api_router.include_router(agents.router)

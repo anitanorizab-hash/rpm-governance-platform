@@ -1,12 +1,18 @@
-// Notifications page (CP20D): draft → submit → queue (dry-run) with HITL. No direct send.
-import { useCallback, useEffect, useState } from "react";
+// Notifications page (CP20D; V1.1 organisation-aware filtering): draft → submit → queue (dry-run) HITL.
+// Filters: Status (client-side) + Organisation. Notifications are not organisation-scoped in the data
+// model, so org filtering is best-effort — it resolves a notification's referenced KPI to its
+// organisation (via the org-tagged KPI list). Notifications with no resolvable KPI appear under "All".
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { notificationService, NOTIFICATION_TYPES } from "../services/notificationService";
+import { kpiService } from "../services/kpiService";
 import { useAuth } from "../context/AuthContext";
+import { useOrgScope } from "../hooks/useOrgScope";
 import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Input, Label } from "../components/ui/input";
 import { Button } from "../components/ui/button";
+import OrgLevelFilter from "../components/common/OrgLevelFilter";
 import NotificationTable from "../components/notifications/NotificationTable";
 import NotificationPreview from "../components/notifications/NotificationPreview";
 import NotificationQueueStatus from "../components/notifications/NotificationQueueStatus";
@@ -22,11 +28,15 @@ export default function Notifications() {
   const canDraft = hasRole(...DRAFT_ROLES);
   const canQueue = hasRole(...QUEUE_ROLES);
   const canViewQueue = hasRole(...VIEW_QUEUE_ROLES);
+  const { level, ppdId, setPpdId, onLevelChange, ppdOptions, organisationId, scopeLabel } = useOrgScope();
 
   const [notifications, setNotifications] = useState([]);
   const [queue, setQueue] = useState([]);
+  const [kpis, setKpis] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [statusFilter, setStatusFilter] = useState("");
 
   const [selected, setSelected] = useState(null);
   const [busy, setBusy] = useState(false);
@@ -40,8 +50,7 @@ export default function Notifications() {
   const setF = (k, v) => setForm((f) => ({ ...f, [k]: v }));
 
   const load = useCallback(async () => {
-    setLoading(true);
-    setError(null);
+    setLoading(true); setError(null);
     try {
       const list = await notificationService.list();
       setNotifications(list);
@@ -56,6 +65,32 @@ export default function Notifications() {
   }, [canViewQueue]);
 
   useEffect(() => { load(); }, [load]);
+  // KPI → organisation map (for best-effort org filtering of notifications).
+  useEffect(() => { kpiService.list({ limit: 500 }).then(setKpis).catch(() => setKpis([])); }, []);
+
+  const kpiOrgMap = useMemo(() => {
+    const m = {};
+    kpis.forEach((k) => { m[k.id] = k.organisation_id; if (k.code) m[k.code] = k.organisation_id; });
+    return m;
+  }, [kpis]);
+
+  const statusOptions = useMemo(
+    () => Array.from(new Set(notifications.map((n) => n.status).filter(Boolean))).sort(),
+    [notifications]
+  );
+
+  const resolveOrg = useCallback(
+    (n) => kpiOrgMap[n.kpi] ?? kpiOrgMap[n.kpi_code] ?? kpiOrgMap[n.related_entity_id] ?? null,
+    [kpiOrgMap]
+  );
+
+  const filteredNotifications = useMemo(() => {
+    return notifications.filter((n) => {
+      if (statusFilter && n.status !== statusFilter) return false;
+      if (organisationId && resolveOrg(n) !== organisationId) return false;
+      return true;
+    });
+  }, [notifications, statusFilter, organisationId, resolveOrg]);
 
   const refreshSelected = useCallback(async (id) => {
     const list = await notificationService.list();
@@ -110,9 +145,12 @@ export default function Notifications() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-xl font-semibold text-slate-800">Notifications</h1>
-        <p className="text-sm text-slate-500">Draft, review and queue KPI notifications.</p>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 className="text-xl font-semibold text-slate-800">Notifications</h1>
+          <p className="text-sm text-slate-500">Draft, review and queue KPI notifications · {scopeLabel}.</p>
+        </div>
+        <OrgLevelFilter level={level} onLevelChange={onLevelChange} ppdId={ppdId} onPpdChange={setPpdId} ppdOptions={ppdOptions} />
       </div>
 
       <div className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
@@ -157,8 +195,27 @@ export default function Notifications() {
         </Card>
       )}
 
+      <Card>
+        <CardHeader><CardTitle>Filter Notifications</CardTitle></CardHeader>
+        <CardContent>
+          <div className="flex flex-wrap items-end gap-3">
+            <div>
+              <Label>Status</Label>
+              <select className={`${selectCls} w-48`} value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+                <option value="">All statuses</option>
+                {statusOptions.map((s) => <option key={s} value={s}>{s.replace(/_/g, " ")}</option>)}
+              </select>
+            </div>
+            <span className="text-xs text-slate-400">
+              Showing {filteredNotifications.length} of {notifications.length}
+              {organisationId ? " · organisation scope applied via referenced KPI" : ""}.
+            </span>
+          </div>
+        </CardContent>
+      </Card>
+
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <NotificationTable notifications={notifications} selectedId={selected?.id} onSelect={setSelected} />
+        <NotificationTable notifications={filteredNotifications} selectedId={selected?.id} onSelect={setSelected} />
         <NotificationPreview
           notification={selected}
           canDraft={canDraft}

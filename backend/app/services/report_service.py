@@ -41,13 +41,13 @@ class ReportService:
 
     # ----- generate -----
     def generate(self, *, current_user, period: str, type_: str = "monthly",
-                 context: AuditContext | None = None):
+                 organisation_id: str | None = None, context: AuditContext | None = None):
         if not self._can_manage(current_user):
             raise ReportPermissionError("Not permitted to generate reports")
         ds = DashboardService(self.db)
-        overview = ds.overview(current_user)
-        high_risk = ds.high_risk_kpis(current_user)
-        fds_summary = FDSService(self.db).summary(current_user)
+        overview = ds.overview(current_user, organisation_id=organisation_id)
+        high_risk = ds.high_risk_kpis(current_user, organisation_id=organisation_id)
+        fds_summary = FDSService(self.db).summary(current_user, organisation_id=organisation_id)
 
         stats = {"total_kpis": overview["total_kpis"], "high_risk": len(high_risk),
                  "missing_information": overview["missing_information"]}
@@ -58,6 +58,7 @@ class ReportService:
         sections = {
             "title": f"KPI Report — {period}",
             "reporting_period": period,
+            "organisation_id": organisation_id,
             "summary": agent_out.get("summary"),
             "narrative": agent_out.get("narrative"),
             "kpi_achievement_overview": overview["achievement"],
@@ -77,7 +78,8 @@ class ReportService:
             generated_by=current_user.id,
         )
         self.audit.record(entity_type="report", entity_id=report.id, action="report_generate",
-                          actor_id=current_user.id, after={"period": period}, context=context, commit=False)
+                          actor_id=current_user.id, after={"period": period, "organisation_id": organisation_id},
+                          context=context, commit=False)
         self.db.commit()
         return self._view(report)
 

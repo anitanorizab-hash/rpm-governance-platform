@@ -12,6 +12,7 @@ from sqlalchemy.orm import Session
 
 from app.models.operational.access import BudgetStatus, Role, Teras
 from app.models.operational.governance import AmendmentWindow
+from app.models.operational.organisation import Organisation
 
 ROLES = [
     ("super_admin", "Platform governance"),
@@ -42,6 +43,14 @@ BUDGET_STATUSES = [
 # Amendment windows: July (7) and October (10). Seed for the RPM start year.
 AMENDMENT_WINDOWS = [(2026, 7), (2026, 10)]
 
+# Organisation hierarchy (V1.1): root JPN + example PPDs. (code, name, type, parent_code)
+# Real PPD master data arrives via the PPD Tactical Plan import; these establish the structure.
+ORGANISATIONS = [
+    ("JPN", "Jabatan Pendidikan Negeri", "JPN", None),
+    ("PPD-KINTA-UTARA", "PPD Kinta Utara", "PPD", "JPN"),
+    ("PPD-MANJUNG", "PPD Manjung", "PPD", "JPN"),
+]
+
 
 def _uid() -> str:
     return str(uuid.uuid4())
@@ -53,7 +62,7 @@ def _now():
 
 def seed_reference_data(session: Session) -> dict:
     """Insert reference rows if missing. Returns counts inserted."""
-    counts = {"roles": 0, "teras": 0, "budget_status": 0, "amendment_windows": 0}
+    counts = {"roles": 0, "teras": 0, "budget_status": 0, "amendment_windows": 0, "organisations": 0}
 
     for name, desc in ROLES:
         if not session.scalar(select(Role).where(Role.name == name)):
@@ -84,5 +93,42 @@ def seed_reference_data(session: Session) -> dict:
                                         created_at=_now(), updated_at=_now()))
             counts["amendment_windows"] += 1
 
+    # Organisation hierarchy (V1.1) — parents seeded before children (list is ordered).
+    org_ids: dict[str, str] = {}
+    for code, name, otype, parent_code in ORGANISATIONS:
+        existing = session.scalar(select(Organisation).where(Organisation.code == code))
+        if existing:
+            org_ids[code] = existing.id
+            continue
+        parent_id = org_ids.get(parent_code) if parent_code else None
+        if parent_code and parent_id is None:
+            parent = session.scalar(select(Organisation).where(Organisation.code == parent_code))
+            parent_id = parent.id if parent else None
+        oid = _uid()
+        session.add(Organisation(id=oid, code=code, name=name, type=otype,
+                                 parent_organisation_id=parent_id, active=True,
+                                 created_at=_now(), updated_at=_now()))
+        session.flush()
+        org_ids[code] = oid
+        counts["organisations"] += 1
+
     session.commit()
     return counts
+
+
+def backfill_kpi_organisation(session: Session, default_org_code: str = "JPN") -> int:
+    """Assign KPIs with no organisation to the default (JPN) org. Idempotent. Returns rows updated.
+
+    V1.1 one-time backfill: existing JPN Tactical Plan KPIs predate the Organisation hierarchy.
+    """
+    from app.models.operational.kpi import KPI
+
+    org = session.scalar(select(Organisation).where(Organisation.code == default_org_code))
+    if org is None:
+        return 0
+    rows = list(session.scalars(select(KPI).where(KPI.organisation_id.is_(None))))
+    for kpi in rows:
+        kpi.organisation_id = org.id
+    if rows:
+        session.commit()
+    return len(rows)

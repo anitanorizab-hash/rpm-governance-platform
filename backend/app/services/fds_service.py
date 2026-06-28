@@ -154,9 +154,13 @@ class FDSService:
                 "approval_state": approval.state, "recommendation_status": rec.status}
 
     # ---------- summary ----------
-    def summary(self, current_user):
+    def summary(self, current_user, organisation_id=None):
         recs = self.repo.list_recommendations()
         kpis = self.repo.all_kpis_active()
+        if organisation_id:
+            kpis = [k for k in kpis if k.organisation_id == organisation_id]
+            org_kpi_ids = {k.id for k in kpis}
+            recs = [r for r in recs if r.kpi_id in org_kpi_ids]
         # finance risk distribution from latest updates
         risk_dist = Counter()
         for k in kpis:

@@ -12,6 +12,7 @@ class KPIListItem(BaseModel):
     sector: str | None = None
     status: str | None = None
     pic_email: str | None = None
+    organisation_id: str | None = None       # V1.1 (enables org-scoped UI filtering)
     is_complete: bool
 
 
