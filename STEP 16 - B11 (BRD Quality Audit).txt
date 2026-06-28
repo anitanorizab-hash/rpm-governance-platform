@@ -1,0 +1,160 @@
+# B11 — BUSINESS REQUIREMENTS DOCUMENT (BRD) QUALITY AUDIT
+
+The Business Requirements Document (BRD) has now been generated.
+
+Do not modify the BRD yet.
+
+Your task is to perform a comprehensive quality audit before the BRD is approved.
+
+Assume the role of:
+
+* Senior Business Analyst
+* Enterprise Solution Architect
+* AI Solution Architect
+* Government Digital Transformation Consultant
+* Quality Assurance Reviewer
+
+Critically review the BRD.
+
+Do not assume it is correct.
+
+---
+
+## Review Areas
+
+### 1. Completeness
+
+Check whether the BRD fully covers:
+
+* Project objectives
+* Business scope
+* Dashboard by Teras 1–7
+* Operational workflow
+* Monthly KPI workflow
+* Budget Intelligence
+* Low Cost High Impact Matrix
+* Executive Copilot
+* KPI Chatbot
+* RAG Knowledge Base
+* Skills Layer
+* Human-in-the-Loop Governance
+* Audit Trail
+* Notifications
+* Reports
+* Security
+* Role-based access
+* Config Mode (Development / Production)
+
+Identify anything missing.
+
+---
+
+### 2. Business Rules
+
+Verify that all confirmed business rules are included.
+
+Examples:
+
+* Excel used only for initial import.
+* Monthly KPI updates by KPI PIC.
+* KPI Statement and Target editable only in July and October.
+* Login restricted to @moe.gov.my and @moe-dl.edu.my.
+* Human approval required before report distribution.
+* AI recommendations are advisory only.
+
+---
+
+### 3. Requirement Coverage
+
+Ensure all identified requirements are represented.
+
+Identify:
+
+* Missing requirements.
+* Duplicate requirements.
+* Conflicting requirements.
+
+---
+
+### 4. Stakeholder Coverage
+
+Verify that all stakeholders and user roles are represented.
+
+---
+
+### 5. AI Readiness
+
+Verify support for:
+
+* Multi-Agent Architecture
+* Skills Layer
+* RAG
+* Budget Intelligence
+* Executive Copilot
+* KPI Alignment
+* Knowledge Documents
+* Live Knowledge Links
+
+---
+
+### 6. Governance
+
+Verify:
+
+* Audit Trail
+* Human Review
+* Change Tracking
+* Approval Workflow
+
+---
+
+### 7. Future Readiness
+
+Determine whether the BRD is ready to support:
+
+* TRD
+* System Architecture
+* Database Design
+* AI Architecture
+* API Design
+* Development
+
+---
+
+## Audit Report
+
+Provide:
+
+1. Strengths.
+2. Weaknesses.
+3. Missing Sections.
+4. Improvement Recommendations.
+5. Risk Assessment.
+
+---
+
+## Final Assessment
+
+Provide:
+
+* BRD Completeness Score (%)
+* Business Coverage Score (%)
+* AI Coverage Score (%)
+* Governance Score (%)
+* Traceability Readiness Score (%)
+* Overall Quality Score (%)
+
+Finally answer:
+
+**"Is this BRD ready for approval?"**
+
+Answer only:
+
+* YES
+* NO
+
+If NO, explain exactly what needs to be corrected.
+
+Do not revise the BRD yet.
+
+Wait for my approval.

@@ -1,0 +1,37 @@
+# ── Secrets (NEVER commit) ─────────────────────────────
+.env
+**/.env
+*.key
+*.pem
+APIKEY.txt
+**/APIKEY.txt
+*apikey*.txt
+*API*KEY*.txt
+
+# ── Python ─────────────────────────────────────────────
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# ── Databases (dev/test artifacts) ─────────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Node / frontend ────────────────────────────────────
+node_modules/
+dist/
+.vite/
+
+# ── Browser-automation & local artifacts ──────────────
+.playwright-mcp/
+*.png
+*.jpeg
+
+# ── OS / editor ────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

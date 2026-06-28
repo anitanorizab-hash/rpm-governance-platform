@@ -1,0 +1,164 @@
+# B7 — BUSINESS RULES CATALOGUE
+
+The Business Capability Model has been completed.
+
+Before defining requirements, create a Business Rules Catalogue.
+
+This document will become the single source of truth for all business rules that govern the application.
+
+Do not describe technical implementation.
+
+Do not generate BRD yet.
+
+---
+
+## Objective
+
+Identify, organise and validate every confirmed business rule discovered during Project Discovery, HMW, Business Process Analysis, Business Capability Model and project knowledge.
+
+---
+
+## Required Sections
+
+### 1. Business Rules Overview
+
+Explain the purpose of this catalogue.
+
+---
+
+### 2. Governance Rules
+
+Examples:
+
+* Only authorised users can access the system.
+* Human approval is required before official report distribution.
+* AI recommendations are advisory only.
+
+---
+
+### 3. User Access Rules
+
+Include:
+
+* Login restricted to `@moe.gov.my` and `@moe-dl.edu.my`.
+* Role-based access control.
+* Permissions by user role.
+
+---
+
+### 4. KPI Management Rules
+
+Include:
+
+* Initial KPI data imported once from Pelan Taktikal JPN and PPD.
+* Monthly updates entered only through the application.
+* Every KPI must have a PIC, sector and email.
+* Missing mandatory fields trigger warnings.
+
+---
+
+### 5. Amendment Rules
+
+Include:
+
+* KPI Statement, KPI Indicator and Target may only be amended in July and October.
+* All amendments require an audit trail.
+* Changes must be traceable.
+
+---
+
+### 6. Budget Rules
+
+Include:
+
+* Budget status options.
+* Budget Intelligence Agent behaviour.
+* Low Cost High Impact Matrix recommendations.
+* Human review before implementation.
+
+---
+
+### 7. Knowledge Rules
+
+Include:
+
+* Operational Data and Knowledge Data are separate.
+* Knowledge documents feed the RAG pipeline.
+* Live knowledge links are supported.
+* Chatbot must cite available knowledge where possible.
+
+---
+
+### 8. Reporting Rules
+
+Include:
+
+* Monthly reports.
+* Executive summaries.
+* Human review workflow.
+* Email queue and approval process.
+
+---
+
+### 9. AI Rules
+
+Include:
+
+* Multi-Agent Architecture.
+* Skills Layer.
+* RAG.
+* Executive Copilot.
+* AI provider switching using `config.md`.
+* AI outputs require human oversight.
+
+---
+
+### 10. Dashboard Rules
+
+Include:
+
+* Dashboard summarises KPIs by Teras 1–7.
+* AI-generated executive summary.
+* KPI mapping.
+* Risk, budget and submission summaries.
+
+---
+
+### 11. Rule Traceability
+
+For each business rule, identify which future documents it affects:
+
+* BRD
+* TRD
+* System Architecture
+* AI Architecture
+* Database Design
+* Test Cases
+
+---
+
+## Quality Review
+
+Review the catalogue for:
+
+* Missing rules
+* Duplicate rules
+* Contradictory rules
+* Ambiguous wording
+
+Improve automatically if necessary.
+
+---
+
+## Final Output
+
+Provide:
+
+1. Total business rules identified.
+2. Completeness score (%).
+3. Traceability readiness (%).
+4. Recommendations before Stakeholder Analysis.
+
+Do not generate Stakeholder Analysis yet.
+
+Wait for my approval.

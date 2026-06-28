@@ -1,0 +1,188 @@
+# B6 — BUSINESS CAPABILITY MODEL (BCM)
+
+The To-Be Business Process has been completed and approved.
+
+Before writing the BRD, identify the business capabilities required by the future system.
+
+Do not describe technical implementation.
+
+Do not describe database tables.
+
+Focus on business capabilities only.
+
+These capabilities will become the foundation for:
+
+* BRD
+* System Modules
+* AI Agents
+* Skills
+* APIs
+* Dashboard
+* User Roles
+
+---
+
+## Objective
+
+Identify every business capability required to successfully operate the Agentic AI Strategic Governance Platform.
+
+---
+
+## Required Sections
+
+### 1. Business Capability Overview
+
+Explain what a Business Capability Model is and why it is important for this project.
+
+---
+
+### 2. Capability Domains
+
+Group capabilities into logical domains.
+
+Suggested domains include (refine if necessary):
+
+1. Governance Management
+2. KPI Management
+3. Monthly Monitoring
+4. Budget & Financial Management
+5. Knowledge Management
+6. AI Decision Support
+7. Reporting & Analytics
+8. User & Security Management
+9. Notification & Communication
+10. System Administration
+
+---
+
+### 3. Capability Details
+
+For each capability provide:
+
+* Capability Name
+* Purpose
+* Business Value
+* Primary Users
+* Inputs
+* Outputs
+* Related Business Rules
+* Dependencies
+
+---
+
+### 4. AI Capability Mapping
+
+Identify which capabilities are supported by AI.
+
+Examples:
+
+* KPI Analysis
+* Risk Detection
+* Budget Intelligence
+* Low Cost High Impact Recommendation
+* KPI Alignment with RPM 2026–2035
+* Executive Copilot
+* Chatbot
+* Monthly Report Generation
+
+For each AI capability identify:
+
+* Responsible AI Agent(s)
+* Supporting Skill(s)
+* Human Review Required (Yes/No)
+
+---
+
+### 5. Capability Relationship Diagram
+
+Produce a text-based capability hierarchy.
+
+Example:
+
+Strategic Governance
+├── KPI Management
+├── Budget Intelligence
+├── Knowledge Management
+├── Executive Decision Support
+├── Reporting
+└── Administration
+
+Refine this hierarchy based on the project.
+
+---
+
+### 6. Capability Maturity
+
+For each capability indicate:
+
+* Manual today
+* Semi-automated
+* Fully automated
+* AI-assisted
+* Human-in-the-loop
+
+---
+
+### 7. Traceability
+
+For every capability identify links to:
+
+* HMW
+* To-Be Business Process
+* Future BRD
+* Future TRD
+* Future AI Architecture
+
+---
+
+### 8. Gap Analysis
+
+Identify any important business capability that is still missing.
+
+Recommend improvements if necessary.
+
+---
+
+## Quality Review
+
+Before finalising:
+
+Check for:
+
+* Missing capabilities
+* Duplicate capabilities
+* Overlapping responsibilities
+* Missing AI support
+* Missing governance
+* Missing business rules
+
+Improve automatically if required.
+
+---
+
+## Final Output
+
+Provide:
+
+1. Business Capability completeness score (%)
+2. Readiness for BRD (%)
+3. AI capability coverage (%)
+4. Governance coverage (%)
+
+Finally answer:
+
+"Is the Business Capability Model complete enough to begin Business Requirements Definition?"
+
+Answer only:
+
+YES
+
+or
+
+NO
+
+If NO, explain what is still missing.
+
+Do not generate the BRD yet.
+
+Wait for my approval.

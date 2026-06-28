@@ -1,0 +1,77 @@
+# D3B — LIVE KNOWLEDGE LINK / UPDATED INFORMATION SOURCE
+
+Please update your understanding again.
+
+Some knowledge for the chatbot will not only come from uploaded files. Some information will come from live links or online sources that may be updated from time to time.
+
+## Important rule
+
+The system must support two types of knowledge sources:
+
+### 1. Static Knowledge Sources
+
+Examples:
+
+* RPM 2026–2035 PDF
+* Guidelines
+* Circulars
+* Meeting notes
+* Uploaded documents
+
+### 2. Live / Updated Knowledge Sources
+
+Examples:
+
+* Official links
+* Online reference pages
+* Shared updated documents
+* Any link that contains current information for chatbot support
+
+## How the system should handle links
+
+The system should:
+
+1. Store the link as a knowledge source.
+2. Record the source title, URL, category and last checked date.
+3. Allow admin to refresh or reprocess the link.
+4. Use the link content for chatbot and KPI mapping if accessible.
+5. Clearly show the source used in chatbot answers.
+6. Prefer official and trusted sources.
+7. If the link cannot be accessed, show a clear message instead of guessing.
+
+## RAG requirement
+
+The RAG / knowledge base must support:
+
+1. Uploaded documents.
+2. Manual notes.
+3. URLs / live links.
+4. Updated knowledge sources.
+
+## Chatbot requirement
+
+The chatbot must answer using:
+
+1. KPI database.
+2. Monthly KPI updates.
+3. Uploaded knowledge documents.
+4. RPM 2026–2035.
+5. Live links / updated knowledge sources where available.
+
+If information is not available in the knowledge base or link source, chatbot must say:
+“I cannot find this information in the available KPI data or knowledge sources.”
+
+## Documentation update
+
+Please include this in:
+
+1. BRD
+2. TRD
+3. RAG Architecture
+4. Knowledge Base Design
+5. Chatbot Design
+6. Traceability Matrix
+
+Do not code yet.
+
+Just update your understanding and Project Knowledge Base.

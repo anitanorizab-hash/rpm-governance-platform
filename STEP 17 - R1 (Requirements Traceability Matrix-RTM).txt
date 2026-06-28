@@ -1,0 +1,94 @@
+# R1 — REQUIREMENTS TRACEABILITY MATRIX (RTM)
+
+The Business Requirements Document (BRD) Version 1.0 has been approved and frozen.
+
+Do not modify the BRD.
+
+The BRD is now the official business baseline.
+
+Your next task is to create the Requirements Traceability Matrix (RTM).
+
+The RTM will become the bridge between the BRD and the TRD.
+
+Do not generate the TRD yet.
+
+---
+
+## Objective
+
+Create a complete Requirements Traceability Matrix that ensures every approved business requirement can be traced through technical design, implementation and testing.
+
+---
+
+## Traceability Columns
+
+For every approved Business Requirement include:
+
+1. Requirement ID
+2. Requirement Name
+3. Business Objective
+4. Business Rule Reference
+5. Business Capability
+6. BRD Section
+7. Future TRD Section
+8. System Module
+9. AI Agent (if applicable)
+10. Skills Layer (if applicable)
+11. Dashboard Component (if applicable)
+12. API / Service
+13. Database Entity
+14. Knowledge Source (if applicable)
+15. Test Case Reference
+16. Priority
+17. Status
+
+---
+
+## Ensure the RTM includes traceability for:
+
+* Dashboard by Teras 1–7
+* KPI Monitoring
+* Monthly KPI Updates
+* Operational Data
+* Knowledge Data
+* RAG
+* KPI Chatbot
+* Executive Copilot
+* Financial Decision Support
+* Budget Intelligence
+* Low Cost High Impact Analysis
+* Strategic Recommendations
+* Notifications
+* Audit Trail
+* Human-in-the-Loop Governance
+* Role-Based Access Control
+* Login using @moe.gov.my and @moe-dl.edu.my
+* Config Mode (Development → Groq, Production → OpenAI/Anthropic)
+
+---
+
+## Validation
+
+Review the RTM to ensure:
+
+* Every BRD requirement has at least one technical implementation path.
+* No approved requirement is orphaned.
+* No technical component exists without a business requirement.
+* Every AI Agent supports at least one approved business capability.
+* Every Skill is linked to at least one AI Agent.
+
+---
+
+## Final Output
+
+Provide:
+
+1. Total traced requirements.
+2. Traceability completeness score (%).
+3. Any orphaned requirements.
+4. Any orphaned technical components.
+5. Readiness to begin the Technical Requirements Document (TRD).
+
+Do not generate the TRD yet.
+
+Wait for my approval.

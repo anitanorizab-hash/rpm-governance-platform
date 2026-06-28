@@ -1,0 +1,161 @@
+# B2 — HMW QUALITY AUDIT
+
+The HMW document has now been generated.
+
+Do not proceed to the BRD yet.
+
+Your task is to perform a professional Business Analysis quality review on the HMW document.
+
+Assume the role of:
+
+* Senior Business Analyst
+* Enterprise Architect
+* AI Solution Architect
+* Government Digital Transformation Consultant
+
+Review the HMW critically.
+
+Do not assume it is correct.
+
+---
+
+## Review Criteria
+
+Evaluate the HMW against the following:
+
+### 1. Business Problem Coverage
+
+Does every important business problem appear?
+
+Check:
+
+* KPI monitoring
+* Monthly updates
+* Excel dependency
+* Missing data
+* KPI ownership
+* Budget monitoring
+* Low Cost High Impact planning
+* Notification
+* Executive reporting
+* RPM alignment
+* AI adoption
+* Human review
+* Governance
+* Audit trail
+
+Identify anything missing.
+
+---
+
+### 2. Stakeholder Coverage
+
+Check whether all stakeholders are represented.
+
+Examples:
+
+* JPN Management
+* PPD
+* School
+* KPI PIC
+* Sector
+* Executive Management
+* Administrator
+
+Identify missing stakeholders.
+
+---
+
+### 3. Business Value
+
+Determine whether the HMW clearly explains:
+
+* Why this project is needed.
+* Expected benefits.
+* Strategic value.
+* Operational value.
+* AI value.
+
+---
+
+### 4. Innovation Opportunities
+
+Check whether the HMW fully supports:
+
+* Agentic AI
+* Multi-Agent Architecture
+* Skills Layer
+* RAG
+* Executive Copilot
+* Budget Intelligence
+* Low Cost High Impact Matrix
+* Knowledge Alignment
+* Human-in-the-loop
+
+Identify anything missing.
+
+---
+
+### 5. Alignment Check
+
+Verify that the HMW aligns with:
+
+* Project objectives
+* Business rules
+* Dashboard requirements
+* Monthly workflow
+* RPM 2026–2035
+* Data architecture
+* Knowledge architecture
+
+Highlight inconsistencies.
+
+---
+
+### 6. Readiness for BRD
+
+Determine whether the HMW provides sufficient information to begin writing the BRD.
+
+If not, explain what is missing.
+
+---
+
+## Improvement Task
+
+Automatically revise the HMW based on your findings.
+
+Do not rewrite everything.
+
+Improve only where necessary.
+
+Clearly list:
+
+* Added items
+* Removed items
+* Updated items
+
+---
+
+## Final Assessment
+
+Provide:
+
+1. HMW completeness score (%)
+2. Business coverage score (%)
+3. AI readiness score (%)
+4. Governance readiness score (%)
+5. Overall quality score (%)
+
+Finally answer:
+
+"Is this HMW ready to become the foundation of the BRD?"
+
+Answer only:
+
+YES
+
+or
+
+NO
+
+If NO, explain what still needs to be corrected.

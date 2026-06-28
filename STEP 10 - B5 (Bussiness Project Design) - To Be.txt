@@ -1,0 +1,432 @@
+# B5 — BUSINESS PROCESS DESIGN (TO-BE)
+
+The As-Is Business Process has been completed.
+
+Now design the complete future business process (To-Be) for the Agentic AI Strategic Governance Platform.
+
+This To-Be process will become the master workflow for the entire application.
+
+Do not write the BRD yet.
+
+Focus on the future operational workflow after the new system is implemented.
+
+---
+
+# Objective
+
+Design the future workflow that integrates:
+
+* AI
+* Agentic AI
+* Multi-Agent Architecture
+* Skills Layer
+* RAG
+* Human-in-the-loop Governance
+* Executive Decision Support
+
+The workflow must be realistic, practical and suitable for JPN, PPD and Schools.
+
+---
+
+# Required Sections
+
+## 1. Future Business Process Overview
+
+Explain the complete future operational model.
+
+---
+
+## 2. Future Actors
+
+Identify all actors including:
+
+• Super Admin
+
+• JPN Administrator
+
+• Sector Administrator
+
+• PPD Administrator
+
+• KPI PIC
+
+• Executive Management
+
+• AI Agents
+
+• Skills Layer
+
+Explain each actor's responsibilities.
+
+---
+
+## 3. Complete End-to-End Workflow
+
+Describe the entire workflow from beginning to end.
+
+The workflow must include:
+
+### Phase 1
+
+Initial Excel Import
+
+↓
+
+Pelan Taktikal JPN
+
+↓
+
+Pelan Taktikal PPD
+
+↓
+
+Validation
+
+↓
+
+Database
+
+---
+
+### Phase 2
+
+Assign KPI PIC
+
+↓
+
+Complete missing information
+
+↓
+
+Warnings
+
+↓
+
+Ready for Monthly Monitoring
+
+---
+
+### Phase 3
+
+Monthly KPI Update
+
+↓
+
+PIC Login
+
+↓
+
+Update Achievement
+
+↓
+
+Update Finance Status
+
+↓
+
+Evidence
+
+↓
+
+Remarks
+
+↓
+
+Save
+
+---
+
+### Phase 4
+
+AI Processing
+
+Validation Agent
+
+↓
+
+KPI Analysis Agent
+
+↓
+
+Risk Agent
+
+↓
+
+Budget Intelligence Agent
+
+↓
+
+Low Cost High Impact Matrix
+
+↓
+
+Intervention Agent
+
+↓
+
+Notification Agent
+
+↓
+
+Audit Agent
+
+---
+
+### Phase 5
+
+Knowledge Layer
+
+Knowledge Documents
+
+*
+
+RPM 2026–2035
+
+*
+
+Live Links
+
+↓
+
+Chunking
+
+↓
+
+Embedding
+
+↓
+
+Vector Database
+
+↓
+
+Chatbot
+
+↓
+
+Knowledge Alignment Agent
+
+↓
+
+Executive Copilot
+
+---
+
+### Phase 6
+
+Dashboard
+
+Main Dashboard
+
+↓
+
+Summary by Teras 1–7
+
+↓
+
+Risk Summary
+
+↓
+
+Budget Summary
+
+↓
+
+Submission Summary
+
+↓
+
+AI Summary
+
+↓
+
+Executive Summary
+
+---
+
+### Phase 7
+
+Monthly Report
+
+↓
+
+Human Review
+
+↓
+
+Approval
+
+↓
+
+Email Queue
+
+↓
+
+Distribution
+
+---
+
+## 4. Dashboard Workflow
+
+Explain how the dashboard should work.
+
+The dashboard must summarise KPI performance according to Teras 1–7.
+
+Include:
+
+• KPI count
+
+• Achievement
+
+• Risk
+
+• Missing information
+
+• Budget
+
+• Submission
+
+• AI summary
+
+• Executive insight
+
+---
+
+## 5. Knowledge Workflow
+
+Explain how:
+
+Knowledge Documents
+
+*
+
+Live Links
+
+↓
+
+RAG
+
+↓
+
+Chatbot
+
+↓
+
+Executive Copilot
+
+work together.
+
+---
+
+## 6. AI Workflow
+
+Describe how all AI agents cooperate.
+
+Include every agent.
+
+Include every reusable skill.
+
+---
+
+## 7. Business Rules
+
+Document all future business rules.
+
+---
+
+## 8. Benefits
+
+Explain the operational improvements compared to the current process.
+
+---
+
+## 9. Business Process Diagram
+
+Produce a text-based future workflow.
+
+---
+
+## 10. Readiness Check
+
+Verify that the To-Be process supports:
+
+✓ HMW
+
+✓ Dashboard by Teras 1–7
+
+✓ Monthly Workflow
+
+✓ Budget Intelligence
+
+✓ Low Cost High Impact Matrix
+
+✓ Skills Layer
+
+✓ RAG
+
+✓ Executive Copilot
+
+✓ Human Review
+
+✓ Notification
+
+✓ Audit Trail
+
+✓ Reporting
+
+✓ Config Mode (Development / Production)
+
+---
+
+## Quality Audit
+
+Before finalising:
+
+Review the To-Be process for:
+
+• Missing workflow
+
+• Missing actor
+
+• Missing AI capability
+
+• Missing dashboard function
+
+• Missing business rule
+
+• Missing governance
+
+Automatically improve if required.
+
+---
+
+## Final Output
+
+Provide:
+
+1. To-Be completeness score (%)
+
+2. Business readiness score (%)
+
+3. AI readiness score (%)
+
+4. Governance readiness score (%)
+
+5. Overall confidence score (%)
+
+Finally answer:
+
+"Is this To-Be Business Process ready to become the master blueprint for the BRD, TRD and System Architecture?"
+
+Answer only:
+
+YES
+
+or
+
+NO
+
+If NO, explain what is still missing.
+
+Do not generate the BRD yet.
+Wait for my approval.

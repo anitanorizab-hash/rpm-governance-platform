@@ -1,0 +1,133 @@
+# B10 — GENERATE THE BUSINESS REQUIREMENTS DOCUMENT (BRD)
+
+The BRD outline has been approved.
+
+Now generate the complete Business Requirements Document.
+
+Do NOT generate the entire document in one response.
+
+Generate it section by section.
+
+At the end of each section, stop and wait for my approval before continuing.
+
+The BRD must incorporate all approved information from:
+
+* Project Discovery
+* HMW
+* As-Is Business Process
+* To-Be Business Process
+* Business Capability Model
+* Business Rules Catalogue
+* Master Requirements Catalogue
+
+Do not contradict any previously approved document.
+
+---
+
+## Writing Standards
+
+The BRD should:
+
+* Use professional enterprise language.
+* Be suitable for a government software project.
+* Be suitable as supporting documentation for academic research.
+* Use clear numbering.
+* Avoid duplicate information.
+* Reference previously approved artefacts where appropriate.
+
+---
+
+## Section Sequence
+
+Generate the BRD in the following order:
+
+Part 1
+
+* Document Control
+* Version History
+* Executive Summary
+* Project Background
+* Business Objectives
+* Project Scope
+
+STOP.
+
+Wait for approval.
+
+After approval, continue with:
+
+Part 2
+
+* Stakeholder Analysis
+* As-Is Business Process
+* To-Be Business Process
+
+STOP.
+
+Wait for approval.
+
+Continue with:
+
+Part 3
+
+* Business Capability Model
+* Business Rules
+* Functional Requirements
+* Non-Functional Requirements
+
+STOP.
+
+Wait for approval.
+
+Continue with:
+
+Part 4
+
+* User Roles and Permissions
+* Dashboard Requirements
+* AI Features
+* AI Agents
+* Skills Layer
+* Knowledge Management (RAG)
+
+STOP.
+
+Wait for approval.
+
+Continue with:
+
+Part 5
+
+* Budget Intelligence
+* Low Cost High Impact Matrix
+* Reporting
+* Notifications
+* Security
+* Constraints
+* Assumptions
+* Risks
+* Success Criteria
+* Glossary
+* Appendices
+
+STOP.
+
+Wait for approval.
+
+---
+
+## Self Review
+
+After every part:
+
+Review the section for:
+
+* Missing requirements
+* Duplicate content
+* Inconsistencies
+* Missing business rules
+* Missing AI features
+
+Automatically improve before presenting it.
+
+Wait for my approval before continuing.

@@ -1,0 +1,93 @@
+# B9 — GENERATE BUSINESS REQUIREMENTS DOCUMENT (BRD) OUTLINE
+
+We have completed the Project Discovery and Business Analysis phases.
+
+The following artefacts have already been completed:
+
+* Project Understanding
+* Scope Validation
+* HMW
+* HMW Audit
+* Approved HMW
+* As-Is Business Process
+* To-Be Business Process
+* Business Capability Model
+* Business Rules Catalogue
+* Master Requirements Catalogue
+
+Do not regenerate any of these documents.
+
+Your task is to design the structure of the Business Requirements Document (BRD).
+
+Do not write the full BRD yet.
+
+---
+
+## Objective
+
+Create a comprehensive BRD outline suitable for an enterprise government software project.
+
+The BRD must consolidate all previous analysis into a single business document.
+
+---
+
+## The BRD should include sections such as:
+
+1. Document Control
+2. Executive Summary
+3. Project Background
+4. Business Objectives
+5. Project Scope
+6. In Scope / Out of Scope
+7. Stakeholder Analysis
+8. Current Business Process (As-Is)
+9. Future Business Process (To-Be)
+10. Business Capability Model
+11. Business Rules
+12. Functional Requirements
+13. Non-Functional Requirements
+14. User Roles and Permissions
+15. Dashboard Requirements
+16. AI Features
+17. AI Agents
+18. Skills Layer
+19. Knowledge Management (RAG)
+20. Budget Intelligence
+21. Low Cost High Impact Matrix
+22. Reporting Requirements
+23. Notification Requirements
+24. Security Requirements
+25. Constraints
+26. Assumptions
+27. Risks
+28. Success Criteria
+29. Traceability Summary
+30. Glossary
+31. Appendices
+
+---
+
+## Review
+
+Before finalising the outline:
+
+* Check for duplicate sections.
+* Check for missing sections.
+* Ensure every confirmed project requirement has an appropriate place in the BRD.
+
+If additional sections are required, add them with justification.
+
+---
+
+## Final Output
+
+Provide:
+
+1. The complete BRD table of contents.
+2. A short description of each section.
+3. The recommended writing order.
+4. An estimated page count for the completed BRD.
+
+Do not write the BRD yet.
+
+Wait for my approval.

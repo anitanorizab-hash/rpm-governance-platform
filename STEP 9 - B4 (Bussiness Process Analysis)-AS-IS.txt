@@ -1,0 +1,161 @@
+# B4 — BUSINESS PROCESS ANALYSIS (AS-IS)
+
+The HMW has now been approved and frozen.
+
+The next task is to analyse the CURRENT business process (As-Is).
+
+Do not describe the future system yet.
+
+Your objective is to understand and document how KPI monitoring and reporting are currently performed before the Agentic AI platform is introduced.
+
+Use everything you have learned from:
+
+* Project folder
+* Project knowledge
+* Business rules
+* Operational workflow
+* Mentor decisions
+* Tactical Plan documents
+* Current KPI process
+
+Generate a professional Business Process Analysis (As-Is).
+
+---
+
+## Required Sections
+
+### 1. Business Process Overview
+
+Describe the current KPI governance process from planning to reporting.
+
+---
+
+### 2. Current Actors
+
+Identify every actor involved.
+
+Examples include:
+
+* JPN Administrator
+* Sector Head
+* KPI PIC
+* PPD
+* School
+* State Management
+* Executive Management
+
+For each actor explain:
+
+* Responsibilities
+* Inputs
+* Outputs
+
+---
+
+### 3. Current Workflow
+
+Describe the current workflow step by step.
+
+Include processes such as:
+
+* Preparation of Tactical Plans
+* Excel distribution
+* Manual completion
+* Data submission
+* Manual checking
+* Follow-up
+* Monthly reporting
+* Management review
+
+Use a clear numbered sequence.
+
+---
+
+### 4. Current Data Flow
+
+Explain where data currently comes from.
+
+Include:
+
+* Pelan Taktikal JPN
+* Pelan Taktikal PPD
+* Excel files
+* Emails
+* Manual documents
+
+---
+
+### 5. Current Pain Points
+
+Identify all problems.
+
+Include but do not limit to:
+
+* Manual work
+* Duplicate data
+* Missing information
+* Late submission
+* Difficulty tracking KPI progress
+* Lack of audit trail
+* Limited executive visibility
+* Difficulty aligning KPIs with RPM 2026–2035
+* Budget monitoring challenges
+* Lack of intelligent recommendations
+
+---
+
+### 6. Current Business Rules
+
+Document the current business rules that exist before automation.
+
+---
+
+### 7. Current Reporting Process
+
+Explain how reports are currently prepared.
+
+---
+
+### 8. Current Risks
+
+Identify operational and governance risks in the current process.
+
+---
+
+### 9. Opportunities for Improvement
+
+Without describing the new solution in detail, identify areas where the current process can be improved.
+
+---
+
+### 10. Business Process Diagram
+
+Create a text-based workflow diagram showing the current process.
+
+---
+
+## Quality Review
+
+Review the As-Is process for:
+
+* Missing actors
+* Missing steps
+* Missing pain points
+* Missing business rules
+* Missing risks
+
+Automatically improve the document if required.
+
+---
+
+## Final Output
+
+Provide:
+
+1. As-Is completeness score (%)
+2. Confidence score (%)
+3. Readiness to design the To-Be process
+
+Do not generate the To-Be process yet.
+
+Wait for my approval.

@@ -1,0 +1,44 @@
+# D2 — PROJECT CONTEXT
+
+Now I will give you the project context.
+
+Core project idea:
+This project is an Agentic AI Strategic Governance Platform to support KPI monitoring and implementation of RPM 2026–2035 at JPN, PPD and school level.
+
+Important business rules:
+
+1. Excel files are only for initial input.
+2. After initial import, all monthly KPI updates must be keyed in by the KPI PIC inside the system.
+3. Login is only allowed using moe.gov.my and moe-dl.edu.my email accounts.
+4. Every KPI must have PIC name, sector and PIC email.
+5. The system must detect incomplete information from initial Pelan Taktikal JPN and PPD.
+6. The system must show warnings for missing information.
+7. PIC must receive reminders for incomplete data and monthly updates.
+8. KPI statement, indicator and target can only be amended in July and October.
+9. All amendments must be saved in audit trail.
+10. Finance section must record whether allocation has been received, will be received, pending, not received, not required or insufficient.
+11. Budget Intelligence Agent must use Low Cost High Impact Matrix.
+12. The system must support RAG using RPM 2026–2035 as the main reference document.
+13. The system must have KPI chatbot.
+14. The system must generate monthly reports.
+15. Human review is required before formal action, report approval and email sending.
+16. Development mode uses Groq.
+17. Production or golive mode may use OpenAI or Anthropic based on config.md.
+18. The project must include agents and skills layer.
+19. The final development must be done step by step in VS Code.
+20. No coding should begin until HMW, BRD, TRD and key architecture documents are completed, audited and frozen.
+
+Please explain what you understand from this context.
+
+Do not summarise only. Tell me what you infer about:
+
+1. The system purpose.
+2. The main users.
+3. The workflow.
+4. The business risks.
+5. The technical direction.
+6. The AI/agentic AI direction.
+7. The documents that must be produced before coding.
+8. Possible missing information.
+
+Do not generate code.

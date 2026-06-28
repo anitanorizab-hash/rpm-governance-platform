@@ -1,0 +1,153 @@
+# D3A — IMPORTANT CORRECTION TO PROJECT DATA, KNOWLEDGE AND MAIN DASHBOARD REQUIREMENTS
+
+Please update your understanding of the project based on this clarification.
+
+Do not restart the process.
+Do not ignore previous instructions.
+This is a correction and refinement to D3.
+
+## 1. Data Folder Clarification
+
+All project knowledge and initial input files are currently placed inside my `Data` folder.
+
+However, you must understand that the files inside the Data folder have two different purposes.
+
+### A. Initial Operational Input
+
+These files are the main initial input for the application:
+
+1. Pelan Taktikal JPN
+2. Pelan Taktikal PPD
+
+These files are used for initial import only.
+
+After initial import:
+
+* The data must be stored in the application database.
+* The Excel files must not become the monthly working source.
+* Monthly updates must be keyed in by KPI PIC inside the system.
+
+### B. Knowledge Sources for AI / Chatbot / RAG
+
+Other files inside the Data folder are knowledge sources.
+
+They are used for:
+
+1. Chatbot knowledge.
+2. KPI mapping.
+3. KPI alignment with RPM 2026–2035.
+4. Better understanding of KPI context.
+5. Supporting AI explanations.
+6. Executive Copilot.
+7. Knowledge Alignment Agent.
+
+These knowledge documents must be processed into the RAG / knowledge base, not treated as monthly KPI input.
+
+Some knowledge sources may also be provided as links. These links should be recorded as knowledge references and later processed by the RAG pipeline where possible.
+
+## 2. Main Page / Dashboard Requirement
+
+The main page of the application is very important.
+
+The main dashboard must show a clear summarisation and mapping of all KPIs according to the 7 cores / 7 Teras of RPM 2026–2035.
+
+The main dashboard must include:
+
+1. Total number of KPIs.
+2. KPI count by Teras 1 to Teras 7.
+3. KPI achievement summary by Teras.
+4. KPI risk summary by Teras.
+5. KPI completion status by Teras.
+6. Missing information by Teras.
+7. Monthly submission status by Teras.
+8. Budget/allocation status by Teras.
+9. Low Cost High Impact recommendation summary by Teras.
+10. RPM alignment strength by Teras.
+11. AI-generated summary for each Teras.
+12. Mapping chart showing KPI distribution across Teras 1–7.
+13. Table showing KPI → Teras → PIC → Sector → Status → Risk → Budget Status.
+14. Executive summary section for management.
+
+## 3. Dashboard Chart Requirement
+
+The dashboard should include visual mapping such as:
+
+1. Bar chart: Number of KPIs by Teras 1–7.
+2. Bar chart or stacked chart: KPI status by Teras.
+3. Risk heatmap or risk table by Teras.
+4. Budget status summary by Teras.
+5. Monthly submission progress by Teras.
+6. Alignment strength by Teras.
+
+If full charts are not possible in the first version, create simple cards and tables first, then charts later.
+
+## 4. AI Summary on Main Page
+
+The main page must have an AI-generated summarisation section.
+
+This section should answer:
+
+1. What is the overall KPI status?
+2. Which Teras has the highest number of KPIs?
+3. Which Teras has the highest risk?
+4. Which Teras has the most missing information?
+5. Which Teras has the most budget issues?
+6. Which KPI needs immediate attention?
+7. What is the recommended management focus this month?
+
+The AI summary must be based on:
+
+* KPI database
+* Monthly updates
+* Budget status
+* RPM 2026–2035 knowledge
+* Other uploaded knowledge documents
+
+## 5. Important Architecture Rule
+
+Please clearly separate:
+
+Operational Data:
+
+* Pelan Taktikal JPN
+* Pelan Taktikal PPD
+* KPI monthly updates
+* PIC information
+* Budget status
+* Audit trail
+* Reports
+
+Knowledge Data:
+
+* RPM 2026–2035
+* Guidelines
+* Circulars
+* Notes
+* Supporting documents
+* Links
+* Any document used for chatbot and KPI mapping
+
+Operational Data goes to the database.
+
+Knowledge Data goes to the RAG / knowledge base.
+
+## 6. Update Future Documentation
+
+When generating HMW, BRD, TRD, System Architecture, Data Flow, Database Design, AI Architecture and Traceability Matrix, make sure this clarification is included.
+
+Especially include this requirement:
+
+“The main dashboard must summarise and map all KPIs according to the 7 Teras RPM 2026–2035.”
+
+## 7. Do Not Code Yet
+
+Do not generate code.
+
+Just update your understanding and confirm:
+
+1. You understand the difference between initial operational input and knowledge sources.
+2. You understand that the Data folder contains both types of files.
+3. You understand that Pelan Taktikal JPN and PPD are initial input only.
+4. You understand that other documents and links are for chatbot/RAG/knowledge alignment.
+5. You understand that the main dashboard must summarise and map KPIs by Teras 1–7.
+6. You will include this in HMW, BRD, TRD and architecture later.

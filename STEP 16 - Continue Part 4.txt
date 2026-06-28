@@ -1,0 +1,77 @@
+Approve Part 3.
+
+Before generating Part 4, please ensure it incorporates all previously approved business rules and project decisions.
+
+In particular, make sure Part 4 includes:
+
+1. User Roles and Permissions
+- Super Admin
+- JPN Administrator
+- Sector Administrator
+- PPD Administrator
+- KPI PIC
+- Executive Management
+- Read-only users (if applicable)
+
+Clearly define permissions for each role.
+
+2. Dashboard Requirements
+The main dashboard must include:
+
+- KPI summary by Teras 1–7
+- KPI mapping by Teras
+- KPI achievement summary
+- Risk summary
+- Budget summary
+- Monthly submission summary
+- Missing information summary
+- Executive AI Summary
+- Charts and visual analytics
+- Quick access to high-risk KPIs
+
+3. AI Features
+
+Include all confirmed AI capabilities:
+
+- KPI Analysis
+- KPI Alignment with RPM 2026–2035
+- Budget Intelligence
+- Low Cost High Impact Matrix Recommendation
+- Executive Copilot
+- KPI Chatbot
+- Monthly Report Generation
+- Notification Intelligence
+- Missing Data Detection
+- Risk Detection
+
+4. AI Agents
+
+Ensure every agent has:
+
+- Purpose
+- Inputs
+- Outputs
+- Dependencies
+- Human Review requirements
+
+5. Skills Layer
+
+Clearly explain reusable skills and which agents use them.
+
+6. Knowledge Management (RAG)
+
+Clearly distinguish:
+
+Operational Data:
+- Initial Excel import
+- Monthly KPI database
+
+Knowledge Data:
+- RPM 2026–2035
+- Supporting documents
+- Guidelines
+- Live knowledge links
+
+Explain how the chatbot and Executive Copilot use the knowledge base.
+
+Please continue with Part 4.

@@ -1,0 +1,181 @@
+# B1 — GENERATE THE HMW (HOW MIGHT WE) DOCUMENT
+
+We have completed the Project Discovery and Project Scope Validation phases.
+
+You have already analysed the project folder, project knowledge, business rules, technical rules, AI rules, mentor decisions, data sources, dashboard requirements and architecture decisions.
+
+Now generate the official **How Might We (HMW) Document**.
+
+This document must become the foundation for the Business Requirements Document (BRD).
+
+## Objective
+
+Identify the core business challenges and transform them into innovation opportunities.
+
+Do not propose technical solutions yet.
+
+Focus on business problems and desired outcomes.
+
+---
+
+## Required Sections
+
+### 1. Project Background
+
+Explain the current situation.
+
+Describe why this project is needed.
+
+---
+
+### 2. Current Business Challenges
+
+Identify all existing challenges, including but not limited to:
+
+* KPI monitoring
+* Monthly reporting
+* Manual Excel process
+* Data inconsistency
+* Missing information
+* Budget monitoring
+* Communication between JPN, PPD and Schools
+* Alignment with RPM 2026–2035
+* Decision making
+* Executive reporting
+
+---
+
+### 3. Stakeholders
+
+Identify every stakeholder.
+
+For each stakeholder include:
+
+* Role
+* Current challenges
+* Desired outcome
+
+---
+
+### 4. Problem Statements
+
+Write clear problem statements.
+
+Example format:
+
+Current Situation
+
+↓
+
+Problem
+
+↓
+
+Impact
+
+---
+
+### 5. How Might We Statements
+
+Generate comprehensive HMW statements.
+
+Examples:
+
+* How might we improve KPI monitoring?
+* How might we reduce incomplete KPI information?
+* How might we help management identify high-risk KPIs earlier?
+* How might we ensure KPI alignment with RPM 2026–2035?
+* How might we recommend alternative actions when budget allocation is unavailable?
+* How might we improve executive decision support?
+* How might we reduce manual reporting effort?
+* How might we improve collaboration between JPN, PPD and Schools?
+
+Generate all relevant HMW statements based on the project.
+
+---
+
+### 6. Success Criteria
+
+Explain what success looks like if these problems are solved.
+
+---
+
+### 7. Opportunities
+
+Identify opportunities for:
+
+* AI
+* Agentic AI
+* Multi-Agent
+* Skills Layer
+* RAG
+* Dashboard
+* Executive Copilot
+* Budget Intelligence
+* Human Review
+* Automation
+
+---
+
+### 8. Business Value
+
+Explain the expected value for:
+
+* JPN
+* PPD
+* Schools
+* KPI PIC
+* State Management
+* Ministry
+
+---
+
+### 9. Constraints
+
+List known business constraints.
+
+Examples:
+
+* Excel only for initial import.
+* Monthly update by KPI PIC.
+* MOE email only.
+* July/October edit restriction.
+* Human approval required.
+* AI advisory only.
+
+---
+
+### 10. Recommendations
+
+Recommend the most important business priorities before BRD development.
+
+---
+
+## HMW Quality Check
+
+Before finalising, audit your own HMW document.
+
+Check:
+
+* Missing business problem
+* Duplicate problem
+* Missing stakeholder
+* Missing opportunity
+* Missing business rule
+* Contradictions
+
+Revise automatically if required.
+
+---
+
+## Final Output
+
+At the end, provide:
+
+1. HMW completeness score (%)
+2. Confidence score (%)
+3. Remaining questions
+4. Recommendations before BRD
+
+Do not generate BRD yet.
+Wait for my approval.

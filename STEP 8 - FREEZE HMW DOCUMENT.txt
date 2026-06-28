@@ -1,0 +1,42 @@
+# B3 — FREEZE HMW DOCUMENT
+
+The HMW document has now been generated, reviewed and synchronised.
+
+I now want to officially freeze this document.
+
+Before freezing:
+
+1. Verify that all corrections from the HMW Audit have been applied.
+2. Verify that the latest project understanding has been incorporated.
+3. Verify that the HMW reflects:
+
+   * Dashboard by Teras 1–7
+   * Operational Data vs Knowledge Data
+   * Budget Intelligence
+   * Low Cost High Impact Matrix
+   * KPI PIC monthly workflow
+   * Executive Copilot
+   * Skills Layer
+   * RAG knowledge sources
+   * Live knowledge links
+   * Human-in-the-loop governance
+
+If anything is still missing, update the HMW before freezing.
+
+After verification:
+
+1. Mark the HMW as **Approved**.
+2. Mark the HMW as **Frozen Baseline v1.0**.
+3. Record it in the Document Index.
+4. Record any important decisions in the Change Log.
+5. Record the relationship between the HMW and future BRD.
+
+Do not modify the frozen HMW unless explicitly instructed in the future.
+
+At the end, provide:
+
+* HMW Version
+* Status
+* Approval Summary
+* Key Decisions Captured
+* Confirmation that BRD development can begin.

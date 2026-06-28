@@ -1,0 +1,254 @@
+# D4 — PROJECT SCOPE VALIDATION AND REQUIREMENT CONFIRMATION
+
+We have now completed the Project Discovery phase.
+
+Before generating any documentation, I want you to validate your complete understanding of this project.
+
+Do NOT generate the HMW, BRD, TRD or any architecture yet.
+
+Instead, consolidate everything you have learned from:
+
+* The entire project folder.
+* All uploaded documents.
+* The Data folder.
+* Initial input files.
+* Knowledge documents.
+* Live knowledge links.
+* Previous project context.
+* Mentor decisions.
+* Prompt engineering instructions.
+* My corrections and clarifications.
+
+## Your task
+
+Prepare a Project Scope Validation Report.
+
+The report must contain the following sections.
+
+---
+
+### 1. Project Purpose
+
+Explain the overall purpose of the system.
+
+---
+
+### 2. Business Objectives
+
+List all confirmed business objectives.
+
+---
+
+### 3. Technical Objectives
+
+List all confirmed technical objectives.
+
+---
+
+### 4. AI Objectives
+
+List all confirmed AI objectives.
+
+---
+
+### 5. Confirmed Users
+
+Identify every user role.
+
+For each role, explain:
+
+* Responsibilities
+* Permissions
+* Main activities
+
+---
+
+### 6. Operational Workflow
+
+Explain the complete business workflow from:
+
+Initial Excel import
+
+↓
+
+Database
+
+↓
+
+Monthly KPI updates
+
+↓
+
+Validation
+
+↓
+
+AI Analysis
+
+↓
+
+Budget Intelligence
+
+↓
+
+Notification
+
+↓
+
+Report Generation
+
+↓
+
+Executive Copilot
+
+---
+
+### 7. Knowledge Workflow
+
+Explain how:
+
+Knowledge Documents
+
+*
+
+Live Links
+
+↓
+
+RAG
+
+↓
+
+Chatbot
+
+↓
+
+Knowledge Alignment
+
+↓
+
+Executive Copilot
+
+work together.
+
+---
+
+### 8. Functional Requirements
+
+Produce a numbered master list of all functional requirements discovered.
+
+---
+
+### 9. Non-functional Requirements
+
+Produce a numbered master list of all non-functional requirements.
+
+---
+
+### 10. Business Rules
+
+Produce the confirmed business rules.
+
+---
+
+### 11. AI Features
+
+List every AI capability that will exist.
+
+Examples include:
+
+* KPI Analysis
+* Budget Intelligence
+* Low Cost High Impact Matrix
+* Executive Copilot
+* KPI Chatbot
+* KPI Alignment
+* Monthly Report Generation
+* Notification Intelligence
+
+---
+
+### 12. Agent List
+
+List every AI Agent.
+
+For each agent explain:
+
+* Purpose
+* Inputs
+* Outputs
+
+---
+
+### 13. Skills List
+
+List every reusable Skill.
+
+For each skill explain:
+
+* Purpose
+* Which agents use it
+
+---
+
+### 14. Dashboard Requirements
+
+Explain everything that must appear on the main dashboard.
+
+Include:
+
+* KPI summary by Teras 1–7
+* Mapping information
+* AI summary
+* Risk summary
+* Budget summary
+* Monthly submission summary
+* Executive insights
+
+---
+
+### 15. Assumptions
+
+List every assumption you are currently making.
+
+---
+
+### 16. Missing Information
+
+List everything that still needs clarification.
+
+---
+
+### 17. Potential Risks
+
+List risks that may affect development.
+
+---
+
+### 18. Recommendations
+
+Recommend improvements before documentation begins.
+
+---
+
+## Final Question
+
+At the end, answer only these three questions.
+
+1. Are you confident that you understand this project?
+
+2. What information is still missing?
+
+3. Are you ready to generate the HMW document without making assumptions?
+
+If the answer to Question 3 is "No", explain exactly what additional information is required.
+
+Do not generate HMW yet.
+
+Do not generate BRD.
+
+Do not generate TRD.
+
+Do not generate architecture.
+
+Only validate your understanding.

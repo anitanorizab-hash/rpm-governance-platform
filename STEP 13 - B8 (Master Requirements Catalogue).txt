@@ -1,0 +1,156 @@
+# B8 — MASTER REQUIREMENTS CATALOGUE
+
+The Business Rules Catalogue has been completed.
+
+Before Stakeholder Analysis and BRD development, create a Master Requirements Catalogue.
+
+This catalogue will become the master source for all project requirements.
+
+Do not write the BRD yet.
+
+Do not write the TRD yet.
+
+---
+
+## Objective
+
+Identify, classify and organise every project requirement discovered so far.
+
+Each requirement must have a unique Requirement ID.
+
+---
+
+## Requirement Categories
+
+Classify requirements into:
+
+### 1. Business Requirements
+
+Examples:
+
+* Monthly KPI monitoring
+* Executive reporting
+* KPI governance
+* Budget monitoring
+
+---
+
+### 2. Functional Requirements
+
+Examples:
+
+* Login
+* Dashboard
+* KPI Update
+* Chatbot
+* Report Generation
+* Notifications
+
+---
+
+### 3. Non-Functional Requirements
+
+Examples:
+
+* Security
+* Performance
+* Scalability
+* Availability
+* Maintainability
+* Auditability
+
+---
+
+### 4. AI Requirements
+
+Examples:
+
+* Multi-Agent
+* Skills Layer
+* RAG
+* KPI Alignment
+* Budget Intelligence
+* Executive Copilot
+
+---
+
+### 5. Integration Requirements
+
+Examples:
+
+* Excel Import
+* Live Knowledge Links
+* Future SharePoint Integration
+* Email Service
+
+---
+
+### 6. Data Requirements
+
+Examples:
+
+* Initial Excel Import
+* Operational Database
+* Knowledge Repository
+* Audit Trail
+
+---
+
+### 7. Reporting Requirements
+
+Examples:
+
+* Monthly Report
+* Executive Summary
+* Dashboard
+* AI Summary
+
+---
+
+## For Every Requirement
+
+Provide:
+
+* Requirement ID
+* Requirement Name
+* Description
+* Category
+* Priority
+
+  * Must Have
+  * Should Have
+  * Could Have
+  * Future Enhancement
+* Source
+  (Business Rule, Mentor Decision, HMW, etc.)
+* Related Capability
+* Related Business Rule
+* Related Future Module
+
+---
+
+## Requirement Validation
+
+Review the catalogue for:
+
+* Missing requirements
+* Duplicate requirements
+* Conflicting requirements
+* Low-priority items that can be deferred
+
+Automatically improve where necessary.
+
+---
+
+## Final Output
+
+Provide:
+
+1. Total requirements identified.
+2. Requirements by category.
+3. MoSCoW prioritisation summary.
+4. Readiness for Stakeholder Analysis.
+
+Do not generate Stakeholder Analysis yet.
+
+Wait for my approval.
