@@ -3,7 +3,8 @@
 import { api } from "./api";
 
 export const fdsService = {
-  summary: () => api.get("/fds/summary"),
+  summary: (organisationId) =>
+    api.get(`/fds/summary${organisationId ? `?organisation_id=${encodeURIComponent(organisationId)}` : ""}`),
   analysis: (kpiId) => api.get(`/fds/kpis/${kpiId}/analysis`),
   generate: (kpiId) => api.post(`/fds/kpis/${kpiId}/generate`, {}),
   listRecommendations: (kpiId) =>
