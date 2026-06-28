@@ -44,12 +44,13 @@ class ExecutiveCopilotService:
         })
 
     # ----- briefing -----
-    def briefing(self, *, current_user, context: AuditContext | None = None):
+    def briefing(self, *, current_user, organisation_id: str | None = None,
+                 context: AuditContext | None = None):
         self._authorise(current_user)
         ds = DashboardService(self.db)
-        overview = ds.overview(current_user)
-        high_risk = ds.high_risk_kpis(current_user)
-        fds_summary = FDSService(self.db).summary(current_user)
+        overview = ds.overview(current_user, organisation_id=organisation_id)
+        high_risk = ds.high_risk_kpis(current_user, organisation_id=organisation_id)
+        fds_summary = FDSService(self.db).summary(current_user, organisation_id=organisation_id)
 
         # orchestrate specialist agents (advisory) — agent injects RAG via skill
         agent_out = AgentService(self.db).execute("executive_copilot", {"overview": overview}).get("output", {})
@@ -85,17 +86,19 @@ class ExecutiveCopilotService:
         self.repo.log(user_id=current_user.id, kind="briefing", question="(system briefing)",
                       answer=briefing["executive_summary"])
         self.audit.record(entity_type="executive_copilot", action="copilot_briefing",
-                          actor_id=current_user.id, context=context, commit=False)
+                          actor_id=current_user.id, after={"organisation_id": organisation_id},
+                          context=context, commit=False)
         self.db.commit()
         return briefing
 
     # ----- ask -----
-    def ask(self, *, current_user, question: str, context: AuditContext | None = None):
+    def ask(self, *, current_user, question: str, organisation_id: str | None = None,
+            context: AuditContext | None = None):
         self._authorise(current_user)
         if not question or not question.strip():
             raise ValueError("Question cannot be empty.")
         rag = RAGService(self.db).query(query=question, actor_id=current_user.id)
-        overview = DashboardService(self.db).overview(current_user)
+        overview = DashboardService(self.db).overview(current_user, organisation_id=organisation_id)
         answer = rag["answer"]
         resp = {
             "question": question,

@@ -1,7 +1,7 @@
 """Executive Copilot API (A6 G12) — CP16. JWT; admin/executive only; advisory; HITL; logged."""
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from sqlalchemy.orm import Session
 
 from app.core.audit import get_audit_context
@@ -29,13 +29,17 @@ def _guard(call):
 
 
 @router.post("/briefing")
-def briefing(request: Request, current_user=Depends(get_current_user), db: Session = Depends(get_db)):
-    return _guard(lambda: _svc(db).briefing(current_user=current_user, context=get_audit_context(request)))
+def briefing(request: Request, organisation_id: str | None = Query(default=None),
+             current_user=Depends(get_current_user), db: Session = Depends(get_db)):
+    return _guard(lambda: _svc(db).briefing(current_user=current_user, organisation_id=organisation_id,
+                                            context=get_audit_context(request)))
 
 
 @router.post("/ask")
-def ask(body: AskIn, request: Request, current_user=Depends(get_current_user), db: Session = Depends(get_db)):
+def ask(body: AskIn, request: Request, organisation_id: str | None = Query(default=None),
+        current_user=Depends(get_current_user), db: Session = Depends(get_db)):
     return _guard(lambda: _svc(db).ask(current_user=current_user, question=body.question,
+                                       organisation_id=organisation_id,
                                        context=get_audit_context(request)))
 
 

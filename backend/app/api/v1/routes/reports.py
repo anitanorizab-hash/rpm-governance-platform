@@ -1,7 +1,7 @@
 """Report API (A6 G13) — CP17. JWT; manage roles generate; HITL via CP9; no email/auto-issue."""
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from sqlalchemy.orm import Session
 
 from app.core.audit import get_audit_context
@@ -28,9 +28,11 @@ def _guard(call):
 
 @router.post("/generate", response_model=ReportOut, status_code=201)
 def generate(body: ReportGenerateIn, request: Request,
+             organisation_id: str | None = Query(default=None),
              current_user=Depends(get_current_user), db: Session = Depends(get_db)):
     return _guard(lambda: _svc(db).generate(current_user=current_user, period=body.period,
-                                            type_=body.type, context=get_audit_context(request)))
+                                            type_=body.type, organisation_id=organisation_id,
+                                            context=get_audit_context(request)))
 
 
 @router.get("", response_model=list[ReportOut])
