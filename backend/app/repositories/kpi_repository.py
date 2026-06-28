@@ -22,6 +22,7 @@ class KPIRepository:
         return (
             selectinload(KPI.indicators), selectinload(KPI.targets),
             selectinload(KPI.activities), selectinload(KPI.pic), selectinload(KPI.teras),
+            selectinload(KPI.organisation),
         )
 
     def get(self, kpi_id: str, include_deleted: bool = False) -> KPI | None:
@@ -31,8 +32,12 @@ class KPIRepository:
         return kpi
 
     def list(self, *, teras_number=None, sector=None, pic_email=None, status=None,
-             limit=100, offset=0) -> list[KPI]:
-        stmt = select(KPI).options(*self._detail_opts()).where(KPI.is_deleted.is_(False))
+             organisation_id=None, include_deleted=False, limit=100, offset=0) -> list[KPI]:
+        stmt = select(KPI).options(*self._detail_opts())
+        if not include_deleted:
+            stmt = stmt.where(KPI.is_deleted.is_(False))
+        if organisation_id:
+            stmt = stmt.where(KPI.organisation_id == organisation_id)
         if teras_number is not None:
             t = self.db.scalar(select(Teras).where(Teras.number == teras_number))
             stmt = stmt.where(KPI.teras_id == (t.id if t else "__none__"))

@@ -26,6 +26,8 @@ def _list_item(kpi) -> KPIListItem:
         sector=kpi.sector, status=kpi.status,
         pic_email=(kpi.pic.email if kpi.pic else None),
         organisation_id=getattr(kpi, "organisation_id", None),
+        organisation_type=(kpi.organisation.type if kpi.organisation else None),
+        organisation_name=(kpi.organisation.name if kpi.organisation else None),
         is_complete=completeness_service.is_complete(kpi),
     )
 
@@ -40,6 +42,9 @@ def _detail(kpi, db: Session) -> KPIDetail:
         id=kpi.id, code=kpi.code, statement=kpi.statement,
         teras_number=(kpi.teras.number if kpi.teras else None),
         sector=kpi.sector, status=kpi.status,
+        organisation_id=getattr(kpi, "organisation_id", None),
+        organisation_type=(kpi.organisation.type if kpi.organisation else None),
+        organisation_name=(kpi.organisation.name if kpi.organisation else None),
         indicators=[i.indicator_text for i in kpi.indicators if i.indicator_text],
         targets=[t.target_value for t in kpi.targets if t.target_value],
         activities=[
@@ -62,6 +67,8 @@ def list_kpis(
     pic: str | None = Query(default=None),
     status_: str | None = Query(default=None, alias="status"),
     completeness: str | None = Query(default=None, pattern="^(complete|incomplete)$"),
+    organisation_id: str | None = Query(default=None),
+    include_removed: bool = Query(default=False),
     limit: int = Query(default=100, le=500),
     offset: int = Query(default=0, ge=0),
     current_user=Depends(get_current_user),
@@ -69,7 +76,8 @@ def list_kpis(
 ):
     items = KPIService(db).list_kpis(
         current_user=current_user, teras=teras, sector=sector, pic=pic, status=status_,
-        completeness=completeness, limit=limit, offset=offset,
+        completeness=completeness, organisation_id=organisation_id, include_removed=include_removed,
+        limit=limit, offset=offset,
     )
     return [_list_item(k) for k in items]
 
@@ -156,12 +164,13 @@ def update_activity(kpi_id: str, activity_id: str, body: ActivityPatchIn, reques
 
 
 @router.delete("/{kpi_id}")
-def delete_kpi(kpi_id: str, request: Request,
+def delete_kpi(kpi_id: str, request: Request, reason: str | None = Query(default=None),
                current_user=Depends(get_current_user), db: Session = Depends(get_db)):
-    res = KPIService(db).soft_delete(current_user=current_user, kpi_id=kpi_id,
+    """V1.1.3: soft-remove a KPI (never hard delete). Reason + org context recorded in the audit."""
+    res = KPIService(db).soft_delete(current_user=current_user, kpi_id=kpi_id, reason=reason,
                                      context=get_audit_context(request))
     if res is None:
         raise HTTPException(status_code=404, detail="KPI not found")
     if res == "forbidden":
-        raise HTTPException(status_code=403, detail="Not permitted to delete KPIs")
-    return {"status": "soft_deleted", "kpi_id": kpi_id}
+        raise HTTPException(status_code=403, detail="Not permitted to remove KPIs")
+    return {"status": "removed", "kpi_id": kpi_id, "soft_delete": True}

@@ -21,11 +21,13 @@ export default function KpiTable({ kpis }) {
   return (
     <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
       <div className="max-h-[34rem] overflow-auto">
-        <table className="w-full min-w-[820px] text-left text-sm">
+        <table className="w-full min-w-[980px] text-left text-sm">
           <thead className="sticky top-0 bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
             <tr>
               <th className="px-4 py-2 font-medium">Code</th>
               <th className="px-4 py-2 font-medium">KPI Statement</th>
+              <th className="px-4 py-2 font-medium">Level</th>
+              <th className="px-4 py-2 font-medium">Organisation</th>
               <th className="px-4 py-2 font-medium">Teras</th>
               <th className="px-4 py-2 font-medium">Department</th>
               <th className="px-4 py-2 font-medium">PIC</th>
@@ -44,6 +46,14 @@ export default function KpiTable({ kpis }) {
                 <td className="max-w-md px-4 py-2 text-slate-700">
                   <span className="line-clamp-2">{k.statement || "—"}</span>
                 </td>
+                <td className="px-4 py-2">
+                  {k.organisation_type ? (
+                    <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${k.organisation_type === "JPN" ? "bg-blue-50 text-blue-700" : "bg-violet-50 text-violet-700"}`}>
+                      {k.organisation_type}
+                    </span>
+                  ) : "—"}
+                </td>
+                <td className="px-4 py-2 text-slate-600">{k.organisation_name || "—"}</td>
                 <td className="px-4 py-2 text-slate-600">{k.teras_number ?? "—"}</td>
                 <td className="px-4 py-2 text-slate-600">{k.sector || "—"}</td>
                 <td className="px-4 py-2 text-slate-600">{k.pic_email || "—"}</td>

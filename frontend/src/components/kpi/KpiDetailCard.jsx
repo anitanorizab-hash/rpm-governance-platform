@@ -89,8 +89,8 @@ function ActivityList({ title, items, canEdit, onSaveActivity }) {
 }
 
 export default function KpiDetailCard({
-  kpi, canManage, canUpdateActivity, isSuperAdmin, onSave, saving, saveError,
-  onAssignPic, onUpdateActivity,
+  kpi, canManage, canUpdateActivity, canRemove, isSuperAdmin, onSave, saving, saveError,
+  onAssignPic, onUpdateActivity, onRequestRemove,
 }) {
   const [editing, setEditing] = useState(false);
   const [override, setOverride] = useState(false);
@@ -135,12 +135,28 @@ export default function KpiDetailCard({
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>{kpi.code} — KPI Detail</CardTitle>
-        {canManage && !editing && <Button variant="outline" onClick={() => setEditing(true)}>Edit KPI</Button>}
+        {!editing && (
+          <div className="flex gap-2">
+            {canManage && <Button variant="outline" onClick={() => setEditing(true)}>Edit KPI</Button>}
+            {canRemove && (
+              <Button variant="outline" className="border-red-200 text-red-700 hover:bg-red-50"
+                      onClick={onRequestRemove}>Remove KPI</Button>
+            )}
+          </div>
+        )}
       </CardHeader>
       <CardContent className="space-y-5">
         {!editing ? (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="KPI Statement"><span className="font-medium">{kpi.statement || "—"}</span></Field>
+            <Field label="Level / Organisation">
+              {kpi.organisation_type ? (
+                <span className={`mr-2 rounded-full px-2 py-0.5 text-xs font-medium ${kpi.organisation_type === "JPN" ? "bg-blue-50 text-blue-700" : "bg-violet-50 text-violet-700"}`}>
+                  {kpi.organisation_type}
+                </span>
+              ) : null}
+              {kpi.organisation_name || "—"}
+            </Field>
             <Field label="Teras">{kpi.teras_number ?? "—"}</Field>
             <Field label="Indicator">{kpi.indicators?.length ? kpi.indicators.join("; ") : "—"}</Field>
             <Field label="Target">{kpi.targets?.length ? kpi.targets.join("; ") : "—"}</Field>
