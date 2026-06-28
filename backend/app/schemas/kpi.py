@@ -13,6 +13,8 @@ class KPIListItem(BaseModel):
     status: str | None = None
     pic_email: str | None = None
     organisation_id: str | None = None       # V1.1 (enables org-scoped UI filtering)
+    organisation_type: str | None = None     # V1.1.3 (JPN / PPD)
+    organisation_name: str | None = None     # V1.1.3
     is_complete: bool
 
 
@@ -40,6 +42,9 @@ class KPIDetail(BaseModel):
     teras_number: int | None = None
     sector: str | None = None
     status: str | None = None
+    organisation_id: str | None = None        # V1.1.3
+    organisation_type: str | None = None      # V1.1.3 (JPN / PPD)
+    organisation_name: str | None = None      # V1.1.3
     indicators: list[str] = []
     targets: list[str] = []
     activities: list[ActivityOut] = []        # V1.1.1: structured (type/milestone/status/remarks)

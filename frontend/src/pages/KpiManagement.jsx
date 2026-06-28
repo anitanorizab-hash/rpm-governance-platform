@@ -1,17 +1,26 @@
 // KpiManagement page (CP20B): KPI list with search + server-side filters + completeness summary.
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { kpiService } from "../services/kpiService";
+import { useAuth } from "../context/AuthContext";
+import { useOrgScope } from "../hooks/useOrgScope";
 import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
 import { Card, CardContent } from "../components/ui/card";
+import OrgLevelFilter from "../components/common/OrgLevelFilter";
 import KpiFilters from "../components/kpi/KpiFilters";
 import KpiTable from "../components/kpi/KpiTable";
 
 const EMPTY = { search: "", teras: "", sector: "", pic: "", status: "", completeness: "" };
+const ADMIN_ROLES = ["super_admin", "jpn_admin"];
 
 export default function KpiManagement() {
+  const { hasRole } = useAuth();
+  const canRemove = hasRole(...ADMIN_ROLES);
+  const { level, ppdId, setPpdId, onLevelChange, ppdOptions, organisationId, scopeLabel } = useOrgScope();
+
   const [filters, setFilters] = useState(EMPTY);
   const [applied, setApplied] = useState(EMPTY);
+  const [showRemoved, setShowRemoved] = useState(false);
   const [kpis, setKpis] = useState([]);
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,6 +32,8 @@ export default function KpiManagement() {
     try {
       const serverFilters = {
         teras: f.teras, sector: f.sector, pic: f.pic, status: f.status, completeness: f.completeness,
+        organisation_id: organisationId || undefined,
+        include_removed: (canRemove && showRemoved) ? true : undefined,
       };
       const [list, sum] = await Promise.all([
         kpiService.list(serverFilters),
@@ -35,7 +46,7 @@ export default function KpiManagement() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [organisationId, showRemoved, canRemove]);
 
   useEffect(() => { load(applied); }, [load, applied]);
 
@@ -55,9 +66,22 @@ export default function KpiManagement() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-xl font-semibold text-slate-800">KPI Management</h1>
-        <p className="text-sm text-slate-500">View, search and filter RPM KPIs. All updates are in-system (no Excel).</p>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 className="text-xl font-semibold text-slate-800">KPI Management</h1>
+          <p className="text-sm text-slate-500">
+            View, search and filter RPM KPIs · {scopeLabel}. All updates are in-system (no Excel).
+          </p>
+        </div>
+        <div className="flex items-end gap-3">
+          <OrgLevelFilter level={level} onLevelChange={onLevelChange} ppdId={ppdId} onPpdChange={setPpdId} ppdOptions={ppdOptions} />
+          {canRemove && (
+            <label className="flex items-center gap-2 pb-2 text-sm text-slate-600">
+              <input type="checkbox" checked={showRemoved} onChange={(e) => setShowRemoved(e.target.checked)} />
+              Show removed
+            </label>
+          )}
+        </div>
       </div>
 
       {summary && (

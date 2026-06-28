@@ -145,8 +145,10 @@ class DashboardService:
         return [
             {"kpi_id": r["kpi"].id, "code": r["kpi"].code, "teras_number": r["teras"] or None,
              "pic": (r["kpi"].pic.name if r["kpi"].pic else None),
-             "sector": r["kpi"].sector, "status": r["status"], "risk": r["risk"],
-             "finance_status": r["finance"]}
+             "sector": r["kpi"].sector,
+             "organisation_type": (r["kpi"].organisation.type if r["kpi"].organisation else None),
+             "organisation_name": (r["kpi"].organisation.name if r["kpi"].organisation else None),
+             "status": r["status"], "risk": r["risk"], "finance_status": r["finance"]}
             for r in rows
         ]
 

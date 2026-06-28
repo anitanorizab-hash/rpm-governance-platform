@@ -23,4 +23,7 @@ export const kpiService = {
     api.post(`/kpis/${id}/assign-pic`, { name, email, sector }),
   updateActivity: (id, activityId, fields) =>
     api.patch(`/kpis/${id}/activities/${activityId}`, fields),
+  // V1.1.3: soft-remove a KPI (audited, with reason). Never hard-deletes.
+  remove: (id, reason) =>
+    api.del(`/kpis/${id}${reason ? `?reason=${encodeURIComponent(reason)}` : ""}`),
 };

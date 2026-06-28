@@ -55,6 +55,8 @@ class KPIMappingRow(BaseModel):
     teras_number: int | None = None
     pic: str | None = None
     sector: str | None = None
+    organisation_type: str | None = None      # V1.1.3 (JPN / PPD)
+    organisation_name: str | None = None       # V1.1.3
     status: str | None = None
     risk: str | None = None
     finance_status: str | None = None

@@ -31,14 +31,17 @@ class KPIService:
 
     # ---------- read (scoped) ----------
     def list_kpis(self, *, current_user, teras=None, sector=None, pic=None, status=None,
-                  completeness=None, limit=100, offset=0):
+                  completeness=None, organisation_id=None, include_removed=False, limit=100, offset=0):
         # kpi_pic sees only their assigned KPIs (by their email)
         roles = set(current_user.role_names)
         pic_filter = pic
         if "kpi_pic" in roles and not (roles & MANAGE_ALL_ROLES):
             pic_filter = current_user.email
+        # only admins may include removed (inactive) KPIs
+        include_removed = include_removed and bool(roles & MANAGE_ALL_ROLES)
         items = self.repo.list(teras_number=teras, sector=sector, pic_email=pic_filter,
-                               status=status, limit=limit, offset=offset)
+                               status=status, organisation_id=organisation_id,
+                               include_deleted=include_removed, limit=limit, offset=offset)
         if completeness == "incomplete":
             items = [k for k in items if not completeness_service.is_complete(k)]
         elif completeness == "complete":
@@ -193,16 +196,29 @@ class KPIService:
         self.db.commit()
         return self.repo.get(kpi_id)
 
-    # ---------- soft delete ----------
-    def soft_delete(self, *, current_user, kpi_id: str, context: AuditContext | None = None):
+    # ---------- soft delete / removal (V1.1.3: reason + org context, audited) ----------
+    def soft_delete(self, *, current_user, kpi_id: str, reason: str | None = None,
+                    context: AuditContext | None = None):
         kpi = self.repo.get(kpi_id)
         if not kpi:
             return None
         if not (set(current_user.role_names) & MANAGE_ALL_ROLES):
             return "forbidden"
+        removed_at = datetime.now(timezone.utc)
+        org = kpi.organisation
         kpi.is_deleted = True
-        kpi.deleted_at = datetime.now(timezone.utc)
-        self.audit.record(entity_type="kpi", entity_id=kpi.id, action="kpi_soft_delete",
-                          actor_id=current_user.id, context=context, commit=False)
+        kpi.deleted_at = removed_at
+        kpi.status = kpi.status  # unchanged; remains for history
+        self.audit.record(
+            entity_type="kpi", entity_id=kpi.id, action="kpi_remove",
+            actor_id=current_user.id, reason=reason,
+            after={
+                "kpi_id": kpi.id, "kpi_code": kpi.code, "kpi_statement": kpi.statement,
+                "organisation_level": (org.type if org else None),
+                "organisation_name": (org.name if org else None),
+                "removed_by": current_user.id, "removed_at": removed_at.isoformat(),
+                "reason": reason,
+            },
+            context=context, commit=False)
         self.db.commit()
         return True
